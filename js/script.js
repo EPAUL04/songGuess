@@ -87,3 +87,12 @@ async function login() {
     }
     
 }
+
+function requestProfile() {
+        const result = await fetch("https://api.spotify.com/v1/me", {
+        method: "GET", headers: { Authorization: `Bearer ${localStorage.access_token}` }
+    });
+        alert(profile); // Profile data logs to console
+
+    return await result.json();
+}
