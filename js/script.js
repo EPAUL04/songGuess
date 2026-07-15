@@ -92,8 +92,6 @@ function requestProfile() {
         const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: { Authorization: `Bearer ${localStorage.access_token}` }
     });
-        alert(profile); // Profile data logs to console
-        localStorage.setItem("username", profile.display_name);
-
+        document.getElementById("name").innerText = profile.display_name;
     return await result.json();
 }
