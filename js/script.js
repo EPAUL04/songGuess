@@ -1,10 +1,3 @@
-function test() {
-    alert("hiiiiiiiiiiiii");
-    window.alert("hello????????");
-    return;
-}
-
-
 async function login() {
     // from spotify's API guide: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow 
     
@@ -83,15 +76,19 @@ async function login() {
       const body = await fetch(url, payload);
       const response = await body.json();
     
-      localStorage.setItem('access_token', response.access_token);
+      localStorage.setItem("acc_token", response.access_token);
     }
     
 }
 
-function requestProfile() {
-        const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET", headers: { Authorization: `Bearer ${localStorage.access_token}` }
-    });
-        document.getElementById("name").innerText = profile.display_name;
-    return await result.json();
+async function requestProfile() {
+  alert("getting your name with token " + localStorage.getItem("acc_token"));
+  // const result = await fetch("https://api.spotify.com/v1/me", {
+  //   method: "GET", headers: { Authorization: `Bearer ${token}` }
+  // });
+  // const profile = await result.json();
+
+  // alert("name is " + profile.display_name);
+  // document.getElementById("name").innerText = profile.display_name;
+  // return profile;
 }
