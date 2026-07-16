@@ -160,8 +160,8 @@ async function requestProfile() {
     redirectToAuthCodeFlow(clientId);
   } else {
     const accessToken = await getAccessToken(clientId, code);
-    const profile = await fetchProfile(accessToken);
-    populateUI(profile);
+    // const profile = await fetchProfile(accessToken);
+    // populateUI(profile);
   }
 
   // alert("getting your name with token " + localStorage.getItem("acc_token"));
