@@ -151,20 +151,20 @@ async function getAccessToken(clientId, code) {
 // }
 
 async function requestProfile() {
-  // const clientId = "4f101e56287d4095af259be90a77b1b9";
-  // const params = new URLSearchParams(window.location.search);
-  // const code = params.get("code");
+  const clientId = "4f101e56287d4095af259be90a77b1b9";
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
 
-  // if (!code) {
-  //   redirectToAuthCodeFlow(clientId);
-  // } else {
-  //   const accessToken = await getAccessToken(clientId, code);
-  //   const profile = await fetchProfile(accessToken);
-  //   populateUI(profile);
-  // }
+  if (!code) {
+    redirectToAuthCodeFlow(clientId);
+  } else {
+    const accessToken = await getAccessToken(clientId, code);
+    const profile = await fetchProfile(accessToken);
+    populateUI(profile);
+  }
 
   // alert("getting your name with token " + localStorage.getItem("acc_token"));
-  alert("getting your name with token " + accessToken);
+  alert("uncommented! getting your name with token " + accessToken);
   // const result = await fetch("https://api.spotify.com/v1/me", {
   //   method: "GET", headers: { Authorization: `Bearer ${token}` }
   // });
