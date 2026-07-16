@@ -1,56 +1,69 @@
+const clientId = "4f101e56287d4095af259be90a77b1b9";
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
+
 async function login() {
-    // from spotify's API guide: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow 
+  if (!code) {
+    redirectToAuthCodeFlow(clientId);
+  } else {
+    const accessToken = await getAccessToken(clientId, code);
+    const profile = await fetchProfile(accessToken);
+  }
+}
+
+// async function login() {
+//     // from spotify's API guide: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow 
     
-    // step 1: code challenge
-    const generateRandomString = (length) => {
-      const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      const values = crypto.getRandomValues(new Uint8Array(length));
-      return values.reduce((acc, x) => acc + possible[x % possible.length], "");
-    }
+//     // step 1: code challenge
+//     const generateRandomString = (length) => {
+//       const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//       const values = crypto.getRandomValues(new Uint8Array(length));
+//       return values.reduce((acc, x) => acc + possible[x % possible.length], "");
+//     }
     
-    const codeVerifier  = generateRandomString(64);
+//     const codeVerifier  = generateRandomString(64);
     
-    const sha256 = async (plain) => {
-      const encoder = new TextEncoder()
-      const data = encoder.encode(plain)
-      return window.crypto.subtle.digest('SHA-256', data)
-    }
+//     const sha256 = async (plain) => {
+//       const encoder = new TextEncoder()
+//       const data = encoder.encode(plain)
+//       return window.crypto.subtle.digest('SHA-256', data)
+//     }
     
-    const base64encode = (input) => {
-      return btoa(String.fromCharCode(...new Uint8Array(input)))
-        .replace(/=/g, '')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_');
-    }
+//     const base64encode = (input) => {
+//       return btoa(String.fromCharCode(...new Uint8Array(input)))
+//         .replace(/=/g, '')
+//         .replace(/\+/g, '-')
+//         .replace(/\//g, '_');
+//     }
     
-    const hashed = await sha256(codeVerifier)
-    const codeChallenge = base64encode(hashed);
+//     const hashed = await sha256(codeVerifier)
+//     const codeChallenge = base64encode(hashed);
     
-    // step 2: user authentication
-    const clientId = '4f101e56287d4095af259be90a77b1b9';    
-    // const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
-    const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
+//     // step 2: user authentication
+//     const clientId = '4f101e56287d4095af259be90a77b1b9';    
+//     // const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
+//     const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
     
-    const scope = 'user-read-private user-read-email';
-    const authUrl = new URL("https://accounts.spotify.com/authorize")
+//     const scope = 'user-read-private user-read-email';
+//     const authUrl = new URL("https://accounts.spotify.com/authorize")
     
-    // generated in the previous step
-    window.localStorage.setItem('code_verifier', codeVerifier);
+//     // generated in the previous step
+//     window.localStorage.setItem('code_verifier', codeVerifier);
     
-    const params =  {
-      response_type: 'code',
-      client_id: clientId,
-      scope,
-      code_challenge_method: 'S256',
-      code_challenge: codeChallenge,
-      redirect_uri: redirectUri,
-    }
+//     const params =  {
+//       response_type: 'code',
+//       client_id: clientId,
+//       scope,
+//       code_challenge_method: 'S256',
+//       code_challenge: codeChallenge,
+//       redirect_uri: redirectUri,
+//     }
     
-    authUrl.search = new URLSearchParams(params).toString();
-    window.location.href = authUrl.toString();
+//     authUrl.search = new URLSearchParams(params).toString();
+//     window.location.href = authUrl.toString();
     
-    const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get('code');
+//     const urlParams = new URLSearchParams(window.location.search);
+//     code = urlParams.get('code');
     
     //step 3: request an access token
     // const getToken = async code => {
@@ -81,7 +94,7 @@ async function login() {
     //   localStorage.setItem("acc_token", response.access_token);
     // }
     // alert("token is " + localStorage.getItem("acc_token"));
-}
+// }
 
 async function redirectToAuthCodeFlow(clientId) {
     const verifier = generateCodeVerifier(128);
@@ -92,7 +105,7 @@ async function redirectToAuthCodeFlow(clientId) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://127.0.0.1:5173/callback");
+    params.append("redirect_uri", "https://epaul04.github.io/songGuess/login-success.html");
     params.append("scope", "user-read-private user-read-email");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
@@ -139,7 +152,7 @@ async function getAccessToken(clientId, code) {
     
     localStorage.setItem("acc_token", access_token);
     // alert("token is " + localStorage.getItem("acc_token"));
-    alert("token is now " + result.json());
+    alert("token is currently " + result.json());
     return access_token;
 }
 
@@ -152,17 +165,6 @@ async function getAccessToken(clientId, code) {
 // }
 
 async function requestProfile() {
-  const clientId = "4f101e56287d4095af259be90a77b1b9";
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get("code");
-
-  if (!code) {
-    redirectToAuthCodeFlow(clientId);
-  } else {
-    const accessToken = await getAccessToken(clientId, code);
-    // const profile = await fetchProfile(accessToken);
-    // populateUI(profile);
-  }
 
   // alert("getting your name with token " + localStorage.getItem("acc_token"));
   alert("uncommented! getting your name with token " + accessToken);
