@@ -138,7 +138,8 @@ async function getAccessToken(clientId, code) {
     const { access_token } = await result.json();
     
     localStorage.setItem("acc_token", access_token);
-    alert("token is " + localStorage.getItem("acc_token"));
+    // alert("token is " + localStorage.getItem("acc_token"));
+    alert("token is now " + result.json());
     return access_token;
 }
 
