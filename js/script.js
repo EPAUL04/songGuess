@@ -83,12 +83,12 @@ async function login() {
 
 async function requestProfile() {
   alert("getting your name with token " + localStorage.getItem("acc_token"));
-  // const result = await fetch("https://api.spotify.com/v1/me", {
-  //   method: "GET", headers: { Authorization: `Bearer ${token}` }
-  // });
-  // const profile = await result.json();
+  const result = await fetch("https://api.spotify.com/v1/me", {
+    method: "GET", headers: { Authorization: `Bearer ${token}` }
+  });
+  const profile = await result.json();
 
-  // alert("name is " + profile.display_name);
-  // document.getElementById("name").innerText = profile.display_name;
-  // return profile;
+  alert("name is " + profile.display_name);
+  document.getElementById("name").innerText = profile.display_name;
+  return profile;
 }
