@@ -29,8 +29,8 @@ window.onload = async () => {
       const body = await fetch(url, payload);
       const response = await body;
 
-    //   alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok);
-    //   alert("json " + response.json());
+      alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok);
+      alert("json " + response.json());
     
       localStorage.setItem("acc_token", response.json.access_token);
       token = response.json.access_token;
