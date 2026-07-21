@@ -28,14 +28,13 @@ window.onload = async () => {
       const body = await fetch(url, payload);
       const response = await body;
 
-      alert("status " + response.status + ", body " + response.body);
+      alert("status " + response.status + ", text " + response.text);
     
       localStorage.setItem("acc_token", response.access_token);
     }
     getToken(code);
-    alert("token is " + localStorage.getItem("acc_token"));
 }
 
 function alertme() {
-    alert("button pressed");
+    alert("token is " + localStorage.getItem("acc_token"));
 }
