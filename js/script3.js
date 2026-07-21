@@ -2,6 +2,7 @@ const clientId = '4f101e56287d4095af259be90a77b1b9';
 const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
+let token = "";
 
 window.onload = async () => {
 //step 3: request an access token
@@ -28,13 +29,22 @@ window.onload = async () => {
       const body = await fetch(url, payload);
       const response = await body;
 
-      alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok);
+      alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok + ", .acc_tok " + response.access_token);
     
       localStorage.setItem("acc_token", response.access_token);
+      token = response.access_token;
     }
     getToken(code);
 }
 
 function alertme() {
     alert("token is " + localStorage.getItem("acc_token"));
+    const result = await fetch("https://api.spotify.com/v1/me", {
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
+    });
+    const profile = await result.json();
+
+    alert("name is " + profile.display_name);
+    document.getElementById("name").innerText = profile.display_name;
+    return profile;
 }
