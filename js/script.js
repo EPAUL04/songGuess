@@ -36,52 +36,8 @@ async function login() {
     
     // generated in the previous step
     window.localStorage.setItem('code_verifier', codeVerifier);
-    
-    const params =  {
-      response_type: 'code',
-      client_id: clientId,
-      scope,
-      code_challenge_method: 'S256',
-      code_challenge: codeChallenge,
-      redirect_uri: redirectUri,
+    window.location.href = authUrl.toString(); //recommended, testing this
     }
-    
-    authUrl.search = new URLSearchParams(params).toString();
-    window.location.href = authUrl.toString();
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get('code');
-    
-    //step 3: request an access token
-    const getToken = async code => {
-    
-      // stored in the previous step
-      const codeVerifier = localStorage.getItem('code_verifier');
-    
-      const url = "https://accounts.spotify.com/api/token";
-      const payload = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          client_id: clientId,
-          grant_type: 'authorization_code',
-          code,
-          redirect_uri: redirectUri,
-          code_verifier: codeVerifier,
-        })
-      }
-    
-      const body = await fetch(url, payload);
-      const response = await body.json();
-
-      alert(response);
-    
-      localStorage.setItem("acc_token", response.access_token);
-    }
-    // alert("token is " + localStorage.getItem("acc_token"));
-}
 
 async function requestProfile() {
   alert("getting your name with token " + localStorage.getItem("acc_token"));

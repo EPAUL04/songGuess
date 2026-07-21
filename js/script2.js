@@ -2,6 +2,7 @@ const clientId = "4f101e56287d4095af259be90a77b1b9";
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
+alert("load");
 if (!code) {
     alert("no code");
     redirectToAuthCodeFlow(clientId);
@@ -12,6 +13,7 @@ if (!code) {
     const profile = await fetchProfile(accessToken);
     populateUI(profile);
 }
+alert("doing stuff on load");
 
 export async function redirectToAuthCodeFlow(clientId) {
     const verifier = generateCodeVerifier(128);
@@ -71,6 +73,7 @@ export async function getAccessToken(clientId, code) {
 }
 
 async function fetchProfile(token) {
+    alert("here");
     const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
