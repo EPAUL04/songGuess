@@ -30,6 +30,7 @@ window.onload = async () => {
       const response = await body;
 
       alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok + ", .acc_tok " + response.access_token);
+      alert("json " + response.json);
     
       localStorage.setItem("acc_token", response.access_token);
       token = response.access_token;
