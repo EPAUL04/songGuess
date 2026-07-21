@@ -34,7 +34,7 @@ window.onload = async () => {
     
       localStorage.setItem("acc_token", response.json.access_token);
       token = response.json.access_token;
-    console.log(response.json.toString)
+    console.log(response.json)
     }
     getToken(code);
 }
