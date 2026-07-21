@@ -36,10 +36,27 @@ async function login() {
     
     // generated in the previous step
     window.localStorage.setItem('code_verifier', codeVerifier);
-    window.location.href = authUrl.toString(); //recommended, testing this
+    
+    const params =  {
+      response_type: 'code',
+      client_id: clientId,
+      scope,
+      code_challenge_method: 'S256',
+      code_challenge: codeChallenge,
+      redirect_uri: redirectUri,
     }
+    
+    authUrl.search = new URLSearchParams(params).toString();
+    window.location.href = authUrl.toString();
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    let code = urlParams.get('code');
+    
+    
+}
 
 async function requestProfile() {
+  alert("button clicked");
   alert("getting your name with token " + localStorage.getItem("acc_token"));
   // const result = await fetch("https://api.spotify.com/v1/me", {
   //   method: "GET", headers: { Authorization: `Bearer ${token}` }
