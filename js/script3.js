@@ -27,10 +27,10 @@ window.onload = async () => {
       }
     
       const body = await fetch(url, payload);
-      const response = await body;
+      const response = await body.json();
 
       alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok + ", .acc_tok " + response.access_token);
-      alert("json " + response.json());
+    //   alert("json " + response.json());
     
       localStorage.setItem("acc_token", response.access_token);
       token = response.access_token;
