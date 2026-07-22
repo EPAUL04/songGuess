@@ -40,8 +40,8 @@ window.onload = async () => {
 }
 
 function alertme() {
-    // alert("token is " + localStorage.getItem("acc_token"));
-    alert("token is " + token);
+    alert("token in local storage is " + localStorage.getItem("acc_token"));
+    alert("token var is " + token);
     // const result = await fetch("https://api.spotify.com/v1/me", {
     //     method: "GET", headers: { Authorization: `Bearer ${token}` }
     // });
