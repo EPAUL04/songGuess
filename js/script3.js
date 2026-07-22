@@ -8,33 +8,33 @@ window.onload = async () => {
 //step 3: request an access token
     const getToken = async code => {
     
-      // stored in the previous step
-      const codeVerifier = localStorage.getItem('code_verifier');
-    
-      const url = "https://accounts.spotify.com/api/token";
-      const payload = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          client_id: clientId,
-          grant_type: 'authorization_code',
-          code,
-          redirect_uri: redirectUri,
-          code_verifier: codeVerifier,
-        })
-      }
-    
-      const body = await fetch(url, payload);
-      const response = await body;
+    // stored in the previous step
+    const codeVerifier = localStorage.getItem('code_verifier');
 
-      alert("status " + response.status + ", text " + response.text + ", ok?" + response.ok);
-      alert("json " + response.json());
+    const url = "https://accounts.spotify.com/api/token";
+    const payload = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+        client_id: clientId,
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: redirectUri,
+        code_verifier: codeVerifier,
+    })
+    }
     
-      localStorage.setItem("acc_token", response.json.access_token);
-      token = response.json.access_token;
-    console.log(response.json)
+    const body = await fetch(url, payload);
+    const response = await body;
+
+    alert("status " + response.status + ", text " + response.text + "\nok? " + response.ok);
+    alert("response " + response);
+
+    localStorage.setItem("acc_token", response.json.access_token);
+    token = response.json.access_token;
+    alert("at end of getToken, token is " + token);
     }
     getToken(code);
 }
