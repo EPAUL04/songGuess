@@ -8,7 +8,7 @@ window.onload = async () => {
 //step 3: request an access token
     const getToken = async code => {
     
-    // stored in the previous step
+    alert("at start, access_token is: " + localStorage.getItem("access_token"));
     const codeVerifier = localStorage.getItem('code_verifier');
 
     const url = "https://accounts.spotify.com/api/token";
@@ -29,8 +29,8 @@ window.onload = async () => {
     const body = await fetch(url, payload);
     const response = await body;
 
-    alert("status " + response.status + ", text " + response.text + "\nok? " + response.ok);
-    alert("response " + response);
+    alert("status: " + response.status + ", text: " + response.statusText + ", ok? " + response.ok);
+    console.log(response.json);
 
     localStorage.setItem("acc_token", response.json.access_token);
     token = response.json.access_token;

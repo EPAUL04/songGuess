@@ -51,8 +51,6 @@ async function login() {
     
     const urlParams = new URLSearchParams(window.location.search);
     let code = urlParams.get('code');
-    
-    
 }
 
 async function requestProfile() {
