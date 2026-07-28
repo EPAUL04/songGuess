@@ -33,5 +33,5 @@ async function getToken() {
     console.log("Body:", data);
 
     localStorage.setItem('access_token', data.access_token);
-    console.log(data.access_token);
+    alert("final token: ", localStorage.getItem(access_token));
 }
