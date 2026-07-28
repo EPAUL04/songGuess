@@ -32,6 +32,6 @@ async function getToken() {
     const data = await response.json();
     console.log("Body:", data);
 
-    localStorage.setItem('access_token', response.access_token);
-    alert(response.access_token);
+    localStorage.setItem('access_token', data.access_token);
+    console.log(data.access_token);
 }
