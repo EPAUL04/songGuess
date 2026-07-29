@@ -1,10 +1,11 @@
-// global variables (bad for security, workshop)
+// ================================= global variables (bad for security, workshop) ===================================
 const clientId = '4f101e56287d4095af259be90a77b1b9';    
 // const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
 const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
 
+// ================================================== API stuff =======================================================
 // take user to spotify API login page and navigate to redirect page
 async function login() {
     // from spotify's API guide: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow 
@@ -84,7 +85,7 @@ async function requestProfile() {
   try {
     await getToken();
   } catch (error) {
-    alert("ERROR: " + error); //TODO: make this console.log instead of alert once finalized
+    console.log("ERROR: " + error);
   }
   let token = localStorage.getItem("access_token");
   alert("getting your name with token " + token);
@@ -101,3 +102,8 @@ async function requestProfile() {
   document.getElementById("name").innerText = profile.display_name;
   return profile;
 }
+
+
+// ================================================== gameplay! =======================================================
+
+
