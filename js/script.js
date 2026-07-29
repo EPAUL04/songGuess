@@ -94,6 +94,8 @@ async function requestProfile() {
   alert("about to send profile fetch request");
   const profile = await result.json();
 
+  alert("result: " + result.status + ", " + result.ok);
+
   alert("name is " + profile.display_name);
   document.getElementById("name").innerText = profile.display_name;
   return profile;
