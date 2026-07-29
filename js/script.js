@@ -86,9 +86,10 @@ async function requestProfile() {
   } catch (error) {
     alert("ERROR: " + error); //TODO: make this console.log instead of alert once finalized
   }
-  alert("getting your name with token " + localStorage.getItem("access_token"));
+  let token = localStorage.getItem("access_token");
+  alert("getting your name with token " + token);
   const result = await fetch("https://api.spotify.com/v1/me", {
-    method: "GET", headers: { Authorization: 'Bearer ${localStorage.getItem("access_token")}' }
+    method: "GET", headers: { Authorization: 'Bearer ${token}' }
   });
   alert("about to send profile fetch request");
   const profile = await result.json();
