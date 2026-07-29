@@ -90,11 +90,10 @@ async function requestProfile() {
   alert("getting your name with token " + token);
   const result = await fetch("https://api.spotify.com/v1/me", {
     method: "GET", headers: { Authorization: 'Bearer ${token}' }
-  });
-  alert("about to send profile fetch request");
-  const profile = await result.json();
-
+  });  
+  
   alert("result: " + result.status + ", " + result.ok);
+  const profile = await result.json();
 
   alert("name is " + profile.display_name);
   document.getElementById("name").innerText = profile.display_name;
