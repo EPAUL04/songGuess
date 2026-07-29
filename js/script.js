@@ -89,7 +89,7 @@ async function requestProfile() {
   let token = localStorage.getItem("access_token");
   alert("getting your name with token " + token);
   const result = await fetch("https://api.spotify.com/v1/me", {
-    method: "GET", headers: { Authorization: 'Bearer ${token}' }
+    method: "GET", headers: { Authorization: 'Bearer' + token }
   });  
   
   alert("result: " + result.status + ", " + result.ok);
