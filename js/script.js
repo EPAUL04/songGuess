@@ -5,6 +5,10 @@ const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
 
+// const divis = document.getElementById(num + 1);
+// divis.style.pointerEvents = "none";
+// // TODO: remove^
+
 // ================================================== API stuff =======================================================
 // take user to spotify API login page and navigate to redirect page
 async function login() {
@@ -100,6 +104,7 @@ async function requestProfile() {
   document.getElementById("name").innerText = profile.display_name;
 
   // set pointer events to none here so css doesn't override
+  const divis = document.getElementById(num + 1);
   divis.style.pointerEvents = "none";
 
   //TODO: make start button visible here
