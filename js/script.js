@@ -1,10 +1,11 @@
+// global variables (bad for security, workshop)
 const clientId = '4f101e56287d4095af259be90a77b1b9';    
 // const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
 const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
 
-
+// take user to spotify API login page and navigate to redirect page
 async function login() {
     // from spotify's API guide: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow 
     
@@ -55,6 +56,7 @@ async function login() {
     
 }
 
+// get access token and store in local storage
 async function getToken() {
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
@@ -77,6 +79,7 @@ async function getToken() {
   localStorage.setItem('access_token', data.access_token);
 }
 
+// requests user's profile from spotify using access token stored in local storage
 async function requestProfile() {
   try {
     await getToken();
