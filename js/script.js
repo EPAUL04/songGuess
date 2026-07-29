@@ -82,28 +82,55 @@ async function getToken() {
 
 // requests user's profile from spotify using access token stored in local storage
 async function requestProfile() {
+  // get access token
   try {
     await getToken();
   } catch (error) {
     console.log("ERROR: " + error);
   }
   let token = localStorage.getItem("access_token");
-  alert("getting your name with token " + token);
+
+  // get profile using access token
   const result = await fetch("https://api.spotify.com/v1/me", {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
-  
-  alert("result: " + result.status + ", " + result.ok);
-  console.log(result);
   const profile = await result.json();
-  console.log(profile);
 
-  alert("name is " + profile.display_name);
+  // set text to reflect display name
   document.getElementById("name").innerText = profile.display_name;
-  return profile;
+  //TODO: make start button visible here
 }
 
 
 // ================================================== gameplay! =======================================================
 
 
+// picks song, gets data ready, calls submit(0)
+function start() {
+  //pick song
+
+  //get data ready
+
+  // start gameplay!
+  submit(0);
+}
+
+function submit(num) {
+  // should take num, add 1, and set the elements associated to be visible!
+}
+
+function submitFinal() {
+  // validate and call either win or lose
+}
+
+function validate(guess) {
+  // validate it girl
+}
+
+function win() {
+  // tell user they won, do something fun
+}
+
+function lose() {
+  // tell winner they lost
+}
