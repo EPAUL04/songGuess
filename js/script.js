@@ -98,6 +98,10 @@ async function requestProfile() {
 
   // set text to reflect display name
   document.getElementById("name").innerText = profile.display_name;
+
+  // set pointer events to none here so css doesn't override
+  divis.style.pointerEvents = "none";
+
   //TODO: make start button visible here
 }
 
@@ -119,10 +123,7 @@ function submit(num) {
   // should take num, add 1, and set the elements associated to be visible!
   const divis = document.getElementById(num + 1);
   divis.style.color = "red";
-  const input = divis.getElementsByTagName("input");
-  divis.getElementsByTagName("input").style.pointerEvents = "auto";
-  divis.getElementsByTagName("label").style.pointerEvents = "auto";
-  divis.getElementsByTagName("button").style.pointerEvents = "auto";
+  divis.style.pointerEvents = "auto";
 }
 
 function submitFinal() {

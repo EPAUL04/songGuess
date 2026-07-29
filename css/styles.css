@@ -123,10 +123,11 @@ form {
 }
 form > * {
     padding: 3%;
+    pointer-events: auto;
 }
 
 form input, form button {
-    pointer-events: none;
+    /* pointer-events: none; */
     display: inline;
     float: left;
     margin: 1.5%;
