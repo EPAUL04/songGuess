@@ -71,23 +71,29 @@ async function requestProfile() {
 }
 
 async function getToken() {
+  alert("in getToken");
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
   const payload = {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-      client_id: clientId,
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: redirectUri,
-      code_verifier: codeVerifier,
-      }),
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+    client_id: clientId,
+    grant_type: 'authorization_code',
+    code,
+    redirect_uri: redirectUri,
+    code_verifier: codeVerifier,
+    })
   }
+
+  alert("about to send payload");
 
   const response = await fetch(url, payload);
   const data = await response.json();
+
+  alert("done sending and retrieving response, about to store");
   localStorage.setItem('access_token', data.access_token);
+  alert("done storing as access_token");
 }
