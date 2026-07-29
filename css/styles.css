@@ -127,7 +127,7 @@ form > * {
 }
 
 form input, form button {
-    /* pointer-events: none; */
+    pointer-events: none;
     display: inline;
     float: left;
     margin: 1.5%;

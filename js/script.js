@@ -5,10 +5,6 @@ const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
 
-// const divis = document.getElementById(num + 1);
-// divis.style.pointerEvents = "none";
-// // TODO: remove^
-
 // ================================================== API stuff =======================================================
 // take user to spotify API login page and navigate to redirect page
 async function login() {
@@ -102,11 +98,6 @@ async function requestProfile() {
 
   // set text to reflect display name
   document.getElementById("name").innerText = profile.display_name;
-
-  // set pointer events to none here so css doesn't override
-  const divis = document.getElementById(num + 1);
-  divis.style.pointerEvents = "none";
-
   //TODO: make start button visible here
 }
 
@@ -125,10 +116,19 @@ function start() {
 }
 
 function submit(num) {
-  // should take num, add 1, and set the elements associated to be visible!
+  alert("answer" + num);
+  // validate input
+  if (num != 0) {
+    // const input = document.getElementById("answer" + num);
+    // validate(input.value);
+  }
+  
+  // set (num + 1) group's elements to be clickable
   const divis = document.getElementById(num + 1);
-  divis.style.color = "red";
-  divis.style.pointerEvents = "auto";
+  document.getElementById("answer" + (num + 1)).style.pointerEvents = "auto";
+  document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
+
+  return false;
 }
 
 function submitFinal() {
@@ -137,6 +137,7 @@ function submitFinal() {
 
 function validate(guess) {
   // validate it girl
+  alert("submitting " + guess);
 }
 
 function win() {
