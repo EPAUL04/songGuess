@@ -1,3 +1,10 @@
+const clientId = '4f101e56287d4095af259be90a77b1b9';    
+// const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
+const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
+const urlParams = new URLSearchParams(window.location.search);
+let code = urlParams.get('code');
+
+
 async function login() {
     // from spotify's API guide: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow 
     
@@ -27,9 +34,6 @@ async function login() {
     const codeChallenge = base64encode(hashed);
     
     // step 2: user authentication
-    const clientId = '4f101e56287d4095af259be90a77b1b9';    
-    // const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
-    const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
     
     const scope = 'user-read-private user-read-email';
     const authUrl = new URL("https://accounts.spotify.com/authorize")
@@ -49,13 +53,11 @@ async function login() {
     authUrl.search = new URLSearchParams(params).toString();
     window.location.href = authUrl.toString();
     
-    const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get('code');
 }
 
 async function requestProfile() {
-  alert("button clicked");
-  alert("getting your name with token " + localStorage.getItem("acc_token"));
+  getToken();
+  alert("getting your name with token " + localStorage.getItem("access_token"));
   // const result = await fetch("https://api.spotify.com/v1/me", {
   //   method: "GET", headers: { Authorization: `Bearer ${token}` }
   // });
@@ -64,4 +66,26 @@ async function requestProfile() {
   // alert("name is " + profile.display_name);
   // document.getElementById("name").innerText = profile.display_name;
   // return profile;
+}
+
+async function getToken() {
+  const codeVerifier = localStorage.getItem('code_verifier');
+  const url = "https://accounts.spotify.com/api/token";
+  const payload = {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+      client_id: clientId,
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: redirectUri,
+      code_verifier: codeVerifier,
+      }),
+  }
+
+  const response = await fetch(url, payload);
+  const data = await response.json();
+  localStorage.setItem('access_token', data.access_token);
 }
