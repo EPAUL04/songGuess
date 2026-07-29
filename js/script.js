@@ -56,7 +56,6 @@ async function login() {
 }
 
 async function getToken() {
-  alert("in getToken");
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
   const payload = {
@@ -73,32 +72,24 @@ async function getToken() {
     })
   }
 
-  alert("about to send payload");
-
   const response = await fetch(url, payload);
-
   const data = await response.json();   
-
-  alert("done sending and retrieving response, about to store");
   localStorage.setItem('access_token', data.access_token);
-  alert("done storing as access_token");
 }
 
 async function requestProfile() {
-  alert("about to get token");
   try {
     await getToken();
   } catch (error) {
-    alert("ERROR");
+    alert("ERROR: " + error); //TODO: make this console.log instead of alert once finalized
   }
-  alert("done getting token");
   alert("getting your name with token " + localStorage.getItem("access_token"));
-  // const result = await fetch("https://api.spotify.com/v1/me", {
-  //   method: "GET", headers: { Authorization: `Bearer ${token}` }
-  // });
-  // const profile = await result.json();
+  const result = await fetch("https://api.spotify.com/v1/me", {
+    method: "GET", headers: { Authorization: `Bearer ${token}` }
+  });
+  const profile = await result.json();
 
-  // alert("name is " + profile.display_name);
-  // document.getElementById("name").innerText = profile.display_name;
-  // return profile;
+  alert("name is " + profile.display_name);
+  document.getElementById("name").innerText = profile.display_name;
+  return profile;
 }
