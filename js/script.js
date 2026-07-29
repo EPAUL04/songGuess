@@ -117,6 +117,12 @@ function start() {
 
 function submit(num) {
   // should take num, add 1, and set the elements associated to be visible!
+  const divis = document.getElementById(num + 1);
+  divis.style.color = "red";
+  const input = divis.getElementsByTagName("input");
+  divis.getElementsByTagName("input").style.pointerEvents = "auto";
+  divis.getElementsByTagName("label").style.pointerEvents = "auto";
+  divis.getElementsByTagName("button").style.pointerEvents = "auto";
 }
 
 function submitFinal() {

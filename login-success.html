@@ -8,23 +8,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-    <body>
+    <body onload="requestProfile()">
         <div id="box">
             <header>
                 <h1> &nbsp; Guess My Song</h1>
             </header>
     
-            <nav onload="requestProfile()">
-                <!-- <button onclick="requestProfile()">get name here</button>S -->
+            <nav>
                 <p>Welcome, <span id="name"></span></p>
             </nav>
         </div>
         
         <main>
-            <p>maybe here we have the 7 or however many boxes preordained</p>
-            <p>this can be a form element actually i feel</p>
-            <p>should eventually be multiselect but for now we'll do text areas and they'll have to guess perfectly</p>
-            <p>form should take up half a page max so info can be displayed on right</p>
+            <!-- <p>should eventually be multiselect but for now we'll do text areas and they'll have to guess perfectly</p>
             <p>
                 on right should be a mockup of the song image stuff in spotify, so like a big square where the album art 
                 will go, title and artist as normal. then under, it'll be a couple labels (playlists, genres). as clues 
@@ -36,39 +32,66 @@
                 and then only the first guess stuff should propogate initially; the submit() function will validate the guess 
                 and either end the game and call win() or will propogate the next set of guesses and add additional clues as 
                 needed. the last guess stuff will call finalSubmit() which just validates guess and says whether they won or lost
-            </p>
+            </p> -->
             <form>
-                <label for="guess1">First guess: <b>+your playlists containing this song</b></label>
-                <input type="text" id="answer1" name="answer1">
-                <button id="submit1" onclick="submit(1)">submit</button>
+                <div id="1">
+                    <label for="guess1">First guess: <b>+your playlists containing this song</b></label>
+                    <input type="text" id="answer1" name="answer1">
+                    <button id="submit1" onclick="submit(1)">submit</button>
+                </div>
 
-                <label for="guess2">Second guess: <b>+genres</b></label>
-                <input type="text" id="answer2" name="answer2">
-                <button id="submit2" onclick="submit(2)">submit</button>
+                <div id="2">
+                    <label for="guess2">Second guess: <b>+genres</b></label>
+                    <input type="text" id="answer2" name="answer2">
+                    <button id="submit2" onclick="submit(2)">submit</button>
+                </div>
                 
-                <label for="guess3">Third guess: <b>+artist name</b></label>
-                <input type="text" id="answer3" name="answer3">
-                <button id="submit3" onclick="submit(3)">submit</button>
+                <div id="3">
+                    <label for="guess3">Third guess: <b>+artist name</b></label>
+                    <input type="text" id="answer3" name="answer3">
+                    <button id="submit3" onclick="submit(3)">submit</button>
+                </div>
                 
-                <label for="guess4">Fourth guess: <b>+album name</b></label>
-                <input type="text" id="answer4" name="answer4">
-                <button id="submit4" onclick="submit(4)">submit</button>
+                <div id="4">
+                    <label for="guess4">Fourth guess: <b>+album name</b></label>
+                    <input type="text" id="answer4" name="answer4">
+                    <button id="submit4" onclick="submit(4)">submit</button>
+                </div>
                 
-                <label for="guess5">Fifth guess:</label>
-                <input type="text" id="answer5" name="answer5">
-                <button id="submit5" onclick="submit(5)">submit</button>
+                <div id="5">
+                    <label for="guess5">Fifth guess:</label>
+                    <input type="text" id="answer5" name="answer5">
+                    <button id="submit5" onclick="submit(5)">submit</button>
+                </div>
                 
-                <label for="guess6">Sixth guess: <b>+first letter</b></label>
-                <input type="text" id="answer6" name="answer6">
-                <button id="submit6" onclick="submit(6)">submit</button>
+                <div id="6">
+                    <label for="guess6">Sixth guess: <b>+first letter</b></label>
+                    <input type="text" id="answer6" name="answer6">
+                    <button id="submit6" onclick="submit(6)">submit</button>
+                </div>
                 
-                <label for="guess7">Last guess!</label>
-                <input type="text" id="answer7" name="answer7">
-                <button id="submit7" onclick="finalSubmit()">submit</button>
+                <div id="7">
+                    <label for="guess7">Last guess!</label>
+                    <input type="text" id="answer7" name="answer7">
+                    <button id="submit7" onclick="finalSubmit()">submit</button>
+                </div>
             </form>
+
+            <div id="display">
+                <img src="images/blank.jpg" width="30%" height="30%" alt="">
+                <h2>(title)</h2>
+                <h3>(artist)</h3>
+                <br>
+                <p>You have added this song to the playlist(s): <span id="playlists"></span></p>
+                <p>Genre(s): <span id="genres"></span></p>
+            </div>
+
+            <div id="gamestate">
+                <button onclick="start()" id="start">Select a song!</button>
+            </div>
         </main>
         <footer>
-            <p>io ✩ date updated: 07.21.2026 ✩ contact me via <a href="mailto:eandepaul@gmail.com">email</a></p>
+            <p>io ✩ date updated: 07.28.2026 ✩ contact me via <a href="mailto:eandepaul@gmail.com">email</a></p>
         </footer>
     </body>
 </html>
