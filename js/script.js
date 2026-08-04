@@ -4,6 +4,7 @@ const clientId = '4f101e56287d4095af259be90a77b1b9';
 const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
+let songGlobal = "";
 
 // ================================================== API stuff =======================================================
 // take user to spotify API login page and navigate to redirect page
@@ -135,6 +136,8 @@ async function grabSong() {
   const song = await fetch(songAddress, {
     method: "GET", headers: { Authorization: "Bearer " + token, 'offset': rand2 }
   });  
+  alert("song is " + song.name);
+  songGlobal = song;
 }
 
 
@@ -144,8 +147,7 @@ async function grabSong() {
 // picks song, gets data ready, calls submit(0)
 function start() {
   //pick song
-
-  //get data ready
+  grabSong();
 
   // start gameplay!
   submit(0);
@@ -160,10 +162,6 @@ function submit(num) {
     validate(input.value);
   }
   else {
-    // these are all for the actual start button!!!
-    // get a song
-    grabSong();
-
     // disable start button
     document.getElementById("start").style.backgroundColor = "gray";
     document.getElementById("start").style.pointerEvents = "none";
