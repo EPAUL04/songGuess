@@ -116,9 +116,10 @@ async function grabSong() {
   // get random number within range(0, number of playlists)
   // alert("total playlists returned: " + playlists.total);
   const rand = Math.floor(Math.random() * playlists.total);
-  let selected = "temp_val";
-  for (let i = 0; i < rand; i++) {
-    selected = playlists.next.name;
+  // get associated playlist
+  let selected = playlists.next;
+  for (let i = 1; i < rand; i++) {
+    selected = playlists.next;
   }
   alert("selected playlist: " + selected);
   
