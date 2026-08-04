@@ -119,7 +119,8 @@ async function grabSong() {
   const rand = Math.floor(Math.random() * playlists.total);
   
   // now get that playlist ===============================================
-  let selected = playlists.items[rand];
+  let selected = playlists.items[0];
+  // let selected = playlists.items[rand]; //TODO: figure this out, could be paging issue or could be accessing issue
   // for (let i = 1; i < rand; i++) {
   //   selected = playlists.next;
   // }
