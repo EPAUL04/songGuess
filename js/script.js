@@ -120,7 +120,8 @@ async function grabSong() {
   
   // now get that playlist ===============================================
   // get playlist data using access token
-  const playlistAddress = "https://api.spotify.com/v1/me/playlist/" + playlists.items[rand].id;
+  const playlistAddress = "https://api.spotify.com/v1/me/playlist/";
+  alert("CHECKING: " + playlistAddress + playlists.items[rand].id);
   const result2 = await fetch(playlistAddress, {
     method: "GET", headers: { Authorization: "Bearer " + token, 'offset': rand }
   });  
