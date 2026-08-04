@@ -37,7 +37,7 @@ async function login() {
     
     // step 2: user authentication
     
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-read-private user-read-email playlist-read-private';
     const authUrl = new URL("https://accounts.spotify.com/authorize")
     
     // generated in the previous step
@@ -98,7 +98,36 @@ async function requestProfile() {
 
   // set text to reflect display name
   document.getElementById("name").innerText = profile.display_name;
-  //TODO: make start button visible here
+}
+
+//
+async function grabSong() {
+  // first choose a playlist ============================================
+  // get access token
+  let token = localStorage.getItem("access_token");
+
+  // get playlist library using access token
+  const result = await fetch("https://api.spotify.com/v1/me/playlists", {
+    method: "GET", headers: { Authorization: "Bearer " + token }
+  });  
+  const playlists = await result.json();
+  
+  // get random number within range(0, number of playlists)
+  alert("total playlists returned: " + playlists.total);
+  const rand = Math.floor(Math.random() * playlists.total);
+  alert("selected playlist: " + rand)
+  
+  // now get that playlist ===============================================
+  // get playlist data using access token
+  const playlistAddress = "https://api.spotify.com/v1/me/playlist/" + playlists.items[rand].id;
+  const result2 = await fetch(playlistAddress, {
+    method: "GET", headers: { Authorization: "Bearer " + token }
+  });  
+  const playlist = await result.json();
+  alert("got playlist " + playlist.name)
+
+  // now get a song from it
+  
 }
 
 
@@ -117,18 +146,26 @@ function start() {
 
 function submit(num) {
   alert("answer" + num);
+
   // validate input
   if (num != 0) {
-    // const input = document.getElementById("answer" + num);
-    // validate(input.value);
+    const input = document.getElementById("answer" + num);
+    validate(input.value);
+  }
+  else {
+    // these are all for the actual start button!!!
+    // get a song
+    grabSong();
+
+    // disable start button
+    document.getElementById("start").style.backgroundColor = "gray";
+    document.getElementById("start").style.pointerEvents = "none";
   }
   
   // set (num + 1) group's elements to be clickable
   const divis = document.getElementById(num + 1);
   document.getElementById("answer" + (num + 1)).style.pointerEvents = "auto";
   document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
-
-  return false;
 }
 
 function submitFinal() {

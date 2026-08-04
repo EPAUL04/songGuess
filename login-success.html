@@ -33,47 +33,47 @@
                 and either end the game and call win() or will propogate the next set of guesses and add additional clues as 
                 needed. the last guess stuff will call finalSubmit() which just validates guess and says whether they won or lost
             </p> -->
-            <form onsubmit="return false">
+            <form>
                 <div id="1">
                     <label for="guess1">First guess: <b>+your playlists containing this song</b></label>
                     <input type="text" id="answer1" name="answer1">
-                    <button id="submit1" type="button" onclick="return submit(1)">submit</button>
+                    <label onclick="submit(1)" class="submit" id="submit1">submit</label>
                 </div>
 
                 <div id="2">
                     <label for="guess2">Second guess: <b>+genres</b></label>
                     <input type="text" id="answer2" name="answer2">
-                    <button id="submit2" type="button" onclick="submit(2)">submit</button>
+                    <label onclick="submit(2)" class="submit" id="submit2">submit</label>
                 </div>
                 
                 <div id="3">
                     <label for="guess3">Third guess: <b>+artist name</b></label>
                     <input type="text" id="answer3" name="answer3">
-                    <button id="submit3" type="button" onclick="submit(3)">submit</button>
+                    <label onclick="submit(3)" class="submit" id="submit3">submit</label>
                 </div>
                 
                 <div id="4">
                     <label for="guess4">Fourth guess: <b>+album name</b></label>
                     <input type="text" id="answer4" name="answer4">
-                    <button id="submit4" type="button" onclick="submit(4)">submit</button>
+                    <label onclick="submit(4)" class="submit" id="submit4">submit</label>
                 </div>
                 
                 <div id="5">
                     <label for="guess5">Fifth guess:</label>
                     <input type="text" id="answer5" name="answer5">
-                    <button id="submit5" type="button" onclick="submit(5)">submit</button>
+                    <label onclick="submit(5)" class="submit" id="submit5">submit</label>
                 </div>
                 
                 <div id="6">
                     <label for="guess6">Sixth guess: <b>+first letter</b></label>
                     <input type="text" id="answer6" name="answer6">
-                    <button id="submit6" type="button" onclick="submit(6)">submit</button>
+                    <label onclick="submit(6)" class="submit" id="submit6">submit</label>
                 </div>
                 
                 <div id="7">
                     <label for="guess7">Last guess!</label>
                     <input type="text" id="answer7" name="answer7">
-                    <button id="submit7" type="button" onclick="finalSubmit()">submit</button>
+                    <label onclick="submit(7)" class="submit" id="submit7">submit</label>
                 </div>
             </form>
 
