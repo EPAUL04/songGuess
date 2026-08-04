@@ -119,10 +119,10 @@ async function grabSong() {
   const rand = Math.floor(Math.random() * playlists.total);
   
   // now get that playlist ===============================================
-  let selected = playlists.next;
-  for (let i = 1; i < rand; i++) {
-    selected = playlists.next;
-  }
+  let selected = playlists.items[rand];
+  // for (let i = 1; i < rand; i++) {
+  //   selected = playlists.next;
+  // }
   alert("selected playlist: " + selected.name);
   // get playlist data using access token
   const playlistAddress = "https://api.spotify.com/v1/me/playlist/" + selected.id;
