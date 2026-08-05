@@ -116,7 +116,7 @@ async function grabSong() {
   
   // get random number within range(0, number of playlists)
   alert("total playlists returned: " + playlists.total);
-  const rand = Math.floor(Math.random() * 20); //playlists.total);
+  let rand = Math.floor(Math.random() * playlists.total);
   alert("rand is " + rand);
   
   // now get that playlist ===============================================
@@ -143,13 +143,22 @@ async function grabSong() {
 
   // now get a song from it
   alert("playlist has " + playlist.items.total + " songs");
-  const rand2 = Math.floor(Math.random() * playlist.items.total);
+  let rand2 = Math.floor(Math.random() * playlist.items.total);
   alert("selected song: " + rand2);
+  while (rand2 > 20) {
+    alert("here");
+    rand2 -= 20;
+    alert("rand now " + rand);
+    alert("about to try next\n");
+    playlist = playlist.next;
+    alert("playlist.next\n");
+  }
 
-  const songAddress = "https://api.spotify.com/v1/me/playlist/" + playlists.items[rand].id + "/items";
-  const song = await fetch(songAddress, {
-    method: "GET", headers: { Authorization: "Bearer " + token, 'offset': rand2 }
+  const songAddress = "https://api.spotify.com/v1/playlists/" + playlist.id + "/items?offset=";
+  const songRequest = await fetch(songAddress, {
+    method: "GET", headers: { Authorization: "Bearer " + token }
   });  
+  const song = await response.json();
   alert("song is " + song.name);
   songGlobal = song;
 }
@@ -161,7 +170,7 @@ async function grabSong() {
 // picks song, gets data ready, calls submit(0)
 function start() {
   //pick song
-  grabSong();
+  await grabSong();
 
   // start gameplay!
   submit(0);
