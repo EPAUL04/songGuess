@@ -116,7 +116,7 @@ async function grabSong() {
   
   // get random number within range(0, number of playlists)
   alert("total playlists returned: " + playlists.total);
-  const rand = Math.floor(Math.random() * 20); //playlists.total);
+  const rand = Math.floor(Math.random() * playlists.total);
   alert("rand is " + rand);
   
   // now get that playlist ===============================================
@@ -136,6 +136,7 @@ async function grabSong() {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
   const playlist = await result.json();
+  alert("status " + playlist.status);
   alert("got playlist " + playlist.name);
 
   // // now get a song from it
