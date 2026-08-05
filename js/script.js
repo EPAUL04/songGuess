@@ -117,12 +117,14 @@ async function grabSong() {
   // get random number within range(0, number of playlists)
   alert("total playlists returned: " + playlists.total);
   const rand = Math.floor(Math.random() * playlists.total);
+  alert("rand is " + rand);
   
   // now get that playlist ===============================================
   while (rand > 20) {
     rand = rand - 20;
     playlists = playlists.next;
   }
+  alert("here");
   let selected = playlists.items[rand];
   alert("selected playlist: " + selected.name);
   // get playlist data using access token
