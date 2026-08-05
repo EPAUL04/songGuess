@@ -116,14 +116,14 @@ async function grabSong() {
   
   // get random number within range(0, number of playlists)
   alert("total playlists returned: " + playlists.total);
-  const rand = Math.floor(Math.random() * playlists.total);
+  const rand = Math.floor(Math.random() * 20); //playlists.total);
   alert("rand is " + rand);
   
   // now get that playlist ===============================================
   while (rand > 20) {
     alert("here");
-    rand -= 20;
-    alert("rand now " + rand);
+    // rand -= 20;
+    // alert("rand now " + rand);
     alert("about to try next\n");
     playlists = playlists.next;
     alert("playlists.next\n");
