@@ -169,7 +169,7 @@ const selectedSong = tracks.items[indexSong].track;
 alert("Song: " + selectedSong.name);
 
 songGlobal = selectedSong;
-  alert("done!!!!");
+  alert("done!!!! :)");
 }
 
 
