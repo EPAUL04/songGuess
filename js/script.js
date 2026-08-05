@@ -119,11 +119,11 @@ async function grabSong() {
   const rand = Math.floor(Math.random() * playlists.total);
   
   // now get that playlist ===============================================
-  let selected = playlists.items[0];
-  // let selected = playlists.items[rand]; //TODO: figure this out, could be paging issue or could be accessing issue
-  // for (let i = 1; i < rand; i++) {
-  //   selected = playlists.next;
-  // }
+  while (rand > 20) {
+    rand -= 20;
+    playlists = playlists.next;
+  }
+  let selected = playlists.items[rand];
   alert("selected playlist: " + selected.name);
   // get playlist data using access token
   const playlistAddress = "https://api.spotify.com/v1/me/playlist/" + selected.id;
