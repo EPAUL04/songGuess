@@ -120,7 +120,7 @@ async function grabSong() {
   
   // now get that playlist ===============================================
   while (rand > 20) {
-    rand -= 20;
+    rand = rand - 20;
     playlists = playlists.next;
   }
   let selected = playlists.items[rand];
