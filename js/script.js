@@ -157,7 +157,7 @@ async function grabSong() {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
   const song = await songRequest.json();
-  alert("song is " + song.items[rand].name);
+  alert("song is " + song.items[rand2].name);
   songGlobal = song.items[rand];
 }
 
