@@ -109,43 +109,38 @@ async function grabSong() {
   let token = localStorage.getItem("access_token");
 
   // get playlist library using access token
-  const result = await fetch("https://api.spotify.com/v1/me/playlists", {
+  const library = await fetch("https://api.spotify.com/v1/me/playlists", {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
-  let playlists = await result.json();
-  console.log(playlists);
+  let playlists = await library.json();
   
   // get random number within range(0, number of playlists)
-  alert("total playlists returned: " + playlists.total);
   const rand = Math.floor(Math.random() * playlists.total);
-
-  // calculate offset and proper index
   const offset = Math.floor(rand / 20);
   const index = rand % 20;
 
-  const result2 = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset * 20}&limit=20`, {
+  // now get actual playlist from library
+  const playlist = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset * 20}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
 
-  const page = await result2.json();
+  const page = await playlist.json();
   const selected = page.items[index];
   alert("selected playlist: " + selected.name);
   
   // get playlist data using access token
-  const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
-  getToken();
-  const result3 = await fetch(playlistAddress, {
-    method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
-  });  
-  let playlist = await result3.json();
-  alert("got playlist " + playlist.name);
+  // const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
+  // getToken();
+  // const result3 = await fetch(playlistAddress, {
+  //   method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
+  // });  
+  // let playlist = await result3.json();
+  // alert("got playlist " + playlist.name);
 
   // now get a song from it
-  alert("playlist has " + playlist.items.total + " songs");
-  const rand2 = Math.floor(Math.random() * playlists.total);
+  alert("playlist has " + selected.items.total + " songs");
+  const rand2 = Math.floor(Math.random() * selected.items.total);
   alert("selected song: " + rand2);
-
-  // calculate offset and proper index
   const offsetSong = Math.floor(rand / 20);
   const indexSong = rand % 20;
 
