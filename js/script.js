@@ -134,10 +134,10 @@ async function grabSong() {
   // get playlist data using access token
   const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
   getToken();
-  const result2 = await fetch(playlistAddress, {
+  const result3 = await fetch(playlistAddress, {
     method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
   });  
-  let playlist = await result2.json();
+  let playlist = await result3.json();
   alert("got playlist " + playlist.name);
 
   // now get a song from it
