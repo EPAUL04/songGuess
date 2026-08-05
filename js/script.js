@@ -121,9 +121,10 @@ async function grabSong() {
   
   // now get that playlist ===============================================
   while (rand > 20) {
+    alert("here");
     rand -= 20;
     alert("rand now " + rand);
-    alert("about to try next");
+    alert("about to try next\n");
     playlists = playlists.next;
     alert("playlists.next");
   }
