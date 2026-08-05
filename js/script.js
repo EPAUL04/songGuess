@@ -144,28 +144,29 @@ async function grabSong() {
   const offsetSong = Math.floor(rand2 / 20);
   const indexSong = rand2 % 20;
 
-  // const songRequest = await fetch(`${playlistAddress}?offset=${offsetSong * 20}&limit=20`, {
-  //   headers: { Authorization: `Bearer ${token}` }
-  // });
-
-  // const songPage = await songRequest.json();
-  // const selectedSong = songPage.items[indexSong];
+  const songRequest = await fetch(`${playlistAddress}?offset=${offsetSong * 20}&limit=20`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  
+  const songPage = await songRequest.json();
+  console.log(songPage);
+  const selectedSong = songPage.items[indexSong];
 
   // alert("song is " + selectedSong.name);
   // songGlobal = selectedSong;
-  const tracksResponse = await fetch(
-    `https://api.spotify.com/v1/playlists/${selected.id}/tracks?offset=${offsetSong * 20}&limit=20`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+//   const tracksResponse = await fetch(
+//     `https://api.spotify.com/v1/playlists/${selected.id}/tracks?offset=${offsetSong * 20}&limit=20`, {
+//       headers: { Authorization: `Bearer ${token}` }
+//     });
 
-const tracks = await tracksResponse.json();
+// const tracks = await tracksResponse.json();
 
-const selectedSong = tracks.items[indexSong].track;
+// const selectedSong = tracks.items[indexSong].track;
 
-alert("Song: " + selectedSong.name);
+// alert("Song: " + selectedSong.name);
 
-songGlobal = selectedSong;
-  alert("done!!!! :)");
+// songGlobal = selectedSong;
+//   alert("done!!!! :)");
 }
 
 
