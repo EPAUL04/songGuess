@@ -146,21 +146,18 @@ async function grabSong() {
   let rand2 = Math.floor(Math.random() * playlist.items.total);
   alert("selected song: " + rand2);
   while (rand2 > 20) {
-    alert("here");
     rand2 -= 20;
-    alert("rand now " + rand);
-    alert("about to try next\n");
     playlist = playlist.next;
-    alert("playlist.next\n");
   }
+  alert("rand2 is now " + rand2);
 
   const songAddress = "https://api.spotify.com/v1/playlists/" + playlist.id + "/items?offset=";
   const songRequest = await fetch(songAddress, {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
   const song = await response.json();
-  alert("song is " + song.name);
-  songGlobal = song;
+  alert("song is " + song.items[rand].name);
+  songGlobal = song.items[rand];
 }
 
 
