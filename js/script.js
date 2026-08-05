@@ -144,14 +144,14 @@ async function grabSong() {
   const offsetSong = Math.floor(rand / 20);
   const indexSong = rand % 20;
 
-  // const songRequest = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offsetSong * 20}&limit=20`, {
-  //   headers: { Authorization: `Bearer ${token}` }
-  // });
+  const songRequest = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offsetSong * 20}&limit=20`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
 
-  // const songPage = await songRequest.json();
-  // const selectedSong = songPage.items[index];
+  const songPage = await songRequest.json();
+  const selectedSong = songPage.items[indexSong];
 
-  alert("song is " + selected.items[indexSong].item.TrackObject.name);
+  alert("song is " + selectedSong.name);
   songGlobal = selectedSong;
 }
 
