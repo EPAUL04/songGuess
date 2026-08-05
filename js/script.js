@@ -148,9 +148,11 @@ async function grabSong() {
     headers: { Authorization: `Bearer ${token}` }
   });
 
-  const song = await songRequest.json();
-  alert("song is " + song.name);
-  songGlobal = song;
+  const songPage = await songRequest.json();
+  const selectedSong = songPage.items[index];
+
+  alert("song is " + selectedSong.item.TrackObject.name);
+  songGlobal = selectedSong;
 }
 
 
