@@ -112,7 +112,7 @@ async function grabSong() {
   const result = await fetch("https://api.spotify.com/v1/me/playlists", {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
-  let playlists = await result.json();
+  const playlists = await result.json();
   console.log(playlists);
   
   // get random number within range(0, number of playlists)
@@ -121,12 +121,13 @@ async function grabSong() {
   alert("rand is " + rand);
   
   // now get that playlist ===============================================
+  let page = playlists;
   while (rand > 20) {
     rand -= 20;
-    playlists = playlists.next;
+    page = page.next;
   }
   alert("rand now " + rand);
-  let selected = playlists.items[rand];
+  let selected = page.items[rand];
   alert("selected playlist: " + selected.name);
   // get playlist data using access token
   const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
@@ -135,7 +136,7 @@ async function grabSong() {
   const result2 = await fetch(playlistAddress, {
     method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
   });  
-  let playlist = await result2.json();
+  const playlist = await result2.json();
   alert("status " + playlist.status);
   alert("got playlist " + playlist.name);
 
@@ -143,13 +144,14 @@ async function grabSong() {
   alert("playlist has " + playlist.items.total + " songs");
   let rand2 = Math.floor(Math.random() * playlist.items.total);
   alert("selected song: " + rand2);
+  let page2 = playlist;
   while (rand2 > 20) {
     rand2 -= 20;
-    playlist = playlist.next;
+    page2 = page2.next;
   }
   alert("rand2 is now " + rand2);
 
-  const songAddress = "https://api.spotify.com/v1/playlists/" + playlist.id + "/items?offset=";
+  const songAddress = "https://api.spotify.com/v1/playlists/" + page2.items[rand2].id;
   const songRequest = await fetch(songAddress, {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
