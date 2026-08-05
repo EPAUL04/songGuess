@@ -123,7 +123,7 @@ async function grabSong() {
   const offset = Math.floor(rand / 20);
   const index = rand % 20;
 
-  const result = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset * 20}&limit=20`,
+  const result2 = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset * 20}&limit=20`,
     {
       headers: {
         Authorization: `Bearer ${token}`
@@ -131,7 +131,7 @@ async function grabSong() {
     }
   );
 
-  const page = await result.json();
+  const page = await result2.json();
 
   const selected = page.items[index];
   alert("selected playlist: " + selected.name);
