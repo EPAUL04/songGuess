@@ -141,17 +141,17 @@ async function grabSong() {
   alert("status " + playlist.status);
   alert("got playlist " + playlist.name);
 
-  // // now get a song from it
-  // alert("playlist has " + playlist.items.total + " songs");
-  // const rand2 = Math.floor(Math.random() * playlist.items.total);
-  // alert("selected song: " + rand2);
+  // now get a song from it
+  alert("playlist has " + playlist.items.total + " songs");
+  const rand2 = Math.floor(Math.random() * playlist.items.total);
+  alert("selected song: " + rand2);
 
-  // const songAddress = "https://api.spotify.com/v1/me/playlist/" + playlists.items[rand].id + "/items";
-  // const song = await fetch(songAddress, {
-  //   method: "GET", headers: { Authorization: "Bearer " + token, 'offset': rand2 }
-  // });  
-  // alert("song is " + song.name);
-  // songGlobal = song;
+  const songAddress = "https://api.spotify.com/v1/me/playlist/" + playlists.items[rand].id + "/items";
+  const song = await fetch(songAddress, {
+    method: "GET", headers: { Authorization: "Bearer " + token, 'offset': rand2 }
+  });  
+  alert("song is " + song.name);
+  songGlobal = song;
 }
 
 
