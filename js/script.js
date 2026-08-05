@@ -129,7 +129,7 @@ async function grabSong() {
   alert("selected playlist: " + selected.name);
   
   // get playlist data using access token
-  // const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
+  const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
   // getToken();
   // const result3 = await fetch(playlistAddress, {
   //   method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
@@ -141,10 +141,10 @@ async function grabSong() {
   alert("playlist has " + selected.items.total + " songs");
   const rand2 = Math.floor(Math.random() * selected.items.total);
   alert("selected song: " + rand2);
-  const offsetSong = Math.floor(rand / 20);
-  const indexSong = rand % 20;
+  const offsetSong = Math.floor(rand2 / 20);
+  const indexSong = rand2 % 20;
 
-  const songRequest = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offsetSong * 20}&limit=20`, {
+  const songRequest = await fetch(`${playlistAddress}?offset=${offsetSong * 20}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
 
