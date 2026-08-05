@@ -133,7 +133,7 @@ async function grabSong() {
   // get playlist data using access token
   const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
   alert("CHECKING: " + playlistAddress);
-  // getToken();
+  getToken();
   const result2 = await fetch(playlistAddress, {
     method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
   });  
