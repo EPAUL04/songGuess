@@ -126,7 +126,7 @@ async function grabSong() {
     alert("rand now " + rand);
     alert("about to try next\n");
     playlists = playlists.next;
-    alert("playlists.next");
+    alert("playlists.next\n");
   }
   let selected = playlists.items[rand];
   alert("selected playlist: " + selected.name);
