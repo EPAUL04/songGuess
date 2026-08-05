@@ -153,6 +153,7 @@ async function grabSong() {
 
   alert("song is " + selectedSong.name);
   songGlobal = selectedSong;
+  alert("done!!!!");
 }
 
 
