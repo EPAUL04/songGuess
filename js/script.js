@@ -137,7 +137,7 @@ async function grabSong() {
   const result2 = await fetch(playlistAddress, {
     method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
   });  
-  const playlist = await result.json();
+  const playlist = await result2.json();
   alert("status " + playlist.status);
   alert("got playlist " + playlist.name);
 
