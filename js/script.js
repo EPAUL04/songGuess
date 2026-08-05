@@ -124,6 +124,7 @@ async function grabSong() {
     alert("here");
     rand -= 20;
     alert("rand now " + rand);
+    alert("about to try next");
     playlists = playlists.next;
     alert("playlists.next");
   }
