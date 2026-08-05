@@ -112,7 +112,7 @@ async function grabSong() {
   const result = await fetch("https://api.spotify.com/v1/me/playlists", {
     method: "GET", headers: { Authorization: "Bearer " + token }
   });  
-  const playlists = await result.json();
+  let playlists = await result.json();
   console.log(playlists);
   
   // get random number within range(0, number of playlists)
@@ -138,7 +138,7 @@ async function grabSong() {
   const result2 = await fetch(playlistAddress, {
     method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
   });  
-  const playlist = await result2.json();
+  let playlist = await result2.json();
   alert("status " + playlist.status);
   alert("got playlist " + playlist.name);
 
