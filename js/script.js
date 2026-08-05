@@ -126,13 +126,13 @@ async function grabSong() {
   let selected = playlists.items[rand];
   alert("selected playlist: " + selected.name);
   // get playlist data using access token
-  const playlistAddress = "https://api.spotify.com/v1/me/playlist/" + selected.id;
+  const playlistAddress = "https://api.spotify.com/v1/me/playlists/" + selected.id + "/items";
   alert("CHECKING: " + playlistAddress);
-  // const result2 = await fetch(playlistAddress, {
-  //   method: "GET", headers: { Authorization: "Bearer " + token }
-  // });  
-  // const playlist = await result.json();
-  // alert("got playlist " + playlist.name);
+  const result2 = await fetch(playlistAddress, {
+    method: "GET", headers: { Authorization: "Bearer " + token }
+  });  
+  const playlist = await result.json();
+  alert("got playlist " + playlist.name);
 
   // // now get a song from it
   // alert("playlist has " + playlist.items.total + " songs");
