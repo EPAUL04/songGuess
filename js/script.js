@@ -122,13 +122,10 @@ async function grabSong() {
   
   // now get that playlist ===============================================
   while (rand > 20) {
-    alert("here");
     rand -= 20;
-    alert("rand now " + rand);
-    alert("about to try next\n");
     playlists = playlists.next;
-    alert("playlists.next\n");
   }
+  alert("rand now " + rand);
   let selected = playlists.items[rand];
   alert("selected playlist: " + selected.name);
   // get playlist data using access token
