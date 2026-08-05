@@ -168,7 +168,7 @@ async function grabSong() {
 
 
 // picks song, gets data ready, calls submit(0)
-function start() {
+async function start() {
   //pick song
   await grabSong();
 
