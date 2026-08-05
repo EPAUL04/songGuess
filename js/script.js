@@ -150,7 +150,7 @@ async function grabSong() {
   
   const songPage = await songRequest.json();
   console.log(songPage);
-  const selectedSong = songPage.items[indexSong];
+  const selectedSong = songPage.items.items[indexSong].item;
 
   // alert("song is " + selectedSong.name);
   // songGlobal = selectedSong;
@@ -163,10 +163,10 @@ async function grabSong() {
 
 // const selectedSong = tracks.items[indexSong].track;
 
-// alert("Song: " + selectedSong.name);
+alert("Song: " + selectedSong.name);
 
-// songGlobal = selectedSong;
-//   alert("done!!!! :)");
+songGlobal = selectedSong;
+  alert("done!!!! :)");
 }
 
 
