@@ -163,7 +163,7 @@ async function grabSong() {
   playlistsGlobal = selected.name; //currently playlist pulled from
   addedGlobal = selectedSong.added_at;
   artistsGlobal = features.artists;
-  albumGlobal = features.album.name;
+  albumGlobal = features.album;
 }
 
 async function getSongFeatures(songName) {
@@ -179,7 +179,7 @@ async function getSongFeatures(songName) {
   const features = await songRequestFinal.json();
 
   // get playlist the song is on
-  const check = await fetch(`https://api.spotify.com/v1/me/tracks/containsids=${id}`, {
+  const check = await fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const inPlaylist = await check.json();
@@ -199,13 +199,13 @@ async function getSongFeatures(songName) {
 
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
-      if (artists[i] == artistsGlobal[j].name) {
-        document.getElementById("display-artists").textContent += artists[i];
+      if (artists[i].name == artistsGlobal[j].name) {
+        document.getElementById("display-artists").textContent += artists[i].name;
       }
     }
   }
   
-  if (album == albumGlobal) {
+  if (album == albumGlobal.name) {
     document.getElementById("display-album-title").textContent = album.name;
     getAlbumCover(albumGlobal);
   }
@@ -214,10 +214,11 @@ async function getSongFeatures(songName) {
 async function getAlbumCover(album) {
   // send request for album art
   getToken();
-  const request = await fetch(`https://api.spotify.com/v1/albums${albumGlobal.id}`, {
+  const token = localStorage.getItem("access_token");
+  const request = await fetch(`https://api.spotify.com/v1/albums/${albumGlobal.id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-  const cover = await check.json();
+  const cover = await request.json();
   // set the element to the new src url
   document.getElementById("display-image").src = cover.images[0].url;
 }
@@ -286,7 +287,7 @@ function giveClue(num) {
       for (let i = 0; i < artistsGlobal.length - 1; i++) {
         text += artistsGlobal[i] + ", ";
       }
-      text += artistsGlobal[artistsGlobal.length];
+      text += artistsGlobal[artistsGlobal.length - 1].name;
       document.getElementById("display-artists").textContent = text;
       break;
     case 4:
