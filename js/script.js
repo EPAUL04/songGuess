@@ -266,7 +266,6 @@ function submitFinal() {
   else {
     lose();
   }
-  document.getElementById("start-over").style.pointerEvents = "auto";
 }
 
 function giveClue(num) {
@@ -286,7 +285,7 @@ function giveClue(num) {
       break;
     case 4:
       alert("album: " + albumGlobal);
-      document.getElementById("display-album").textContent = albumGlobal.name;
+      document.getElementById("display-album").textContent = albumGlobal;
       break;
     case 6:
       alert("first letter: " + songGlobal.name[0]);
@@ -307,9 +306,11 @@ function validate(guess) {
 function win() {
   // tell user they won, do something fun
   alert("you win!!!");
+  document.getElementById("reset").style.pointerEvents = "auto";
 }
 
 function lose() {
   // tell winner they lost
   alert("you lose, the song was " + songGlobal.name);
+  document.getElementById("reset").style.pointerEvents = "auto";
 }
