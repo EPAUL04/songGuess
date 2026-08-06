@@ -169,7 +169,7 @@ async function grabSong() {
 async function getSongFeatures(songName) {
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
-  const findSong = await fetch(`https://api.spotify.com/v1/searchq=track%3A${songName}`, {
+  const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${songName}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const id = await findSong.json().tracks.items[0].id;
