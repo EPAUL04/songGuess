@@ -4,7 +4,14 @@ const clientId = '4f101e56287d4095af259be90a77b1b9';
 const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
-let songGlobal = "";
+
+// song data
+let songGlobal = null;
+let playlistsGlobal = null;
+let genresGlobal = null;
+let artistsGlobal = null;
+let albumGlobal = null;
+let addedGlobal = null;
 
 // ================================================== API stuff =======================================================
 // take user to spotify API login page and navigate to redirect page
@@ -144,6 +151,81 @@ async function grabSong() {
   const selectedSong = songPage.items.items[indexSong].item;
   // set global var so we can do validation yayyyy
   songGlobal = selectedSong;
+
+  // update other globals!  //TODO: this!!!!!!!!!!!!!!!!!!!
+  const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${songGlobal.id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const features = await songRequestFinal.json();
+
+  // playlists is going to be hard, it's going to have to be either only the playlist it was pulled from or like. a crazy loop
+  playlistsGlobal = selected.name; //currently playlist pulled from
+
+  // // genresGlobal
+  // // features.
+  // they can't do genres, maybe instead do when it was added to library?
+  addedGlobal = selectedSong.added_at;
+
+  artistsGlobal = features.artists;
+
+  albumGlobal = features.album.name;
+}
+
+function getSongFeatures(song) {
+  //TODO: finish :)
+
+  // get playlists the song is on
+  let playlist = "";
+
+  // get genres
+  // let genres = "";
+
+  // get when added
+  let added = "";
+
+  // get artist
+  let artist = "";
+
+  // get album
+  let album = "";
+
+
+  // now compare and update display ====================================================================
+  // for (let i = 0; i < playlists.length; i++) {
+  //   for (let j = 0; j < playlistsGlobal.length; j++) {
+  //     if (playlists[i] == playlistsGlobal[j]) {
+  //       document.getElementById("display-playlists").textContent += playlists[i];
+  //     }
+  //   }
+  // }
+  if (playlist == playlistsGlobal) {
+    document.getElementById("display-playlist").textContent = playlist;
+  }
+
+  // for (let i = 0; i < genres.length; i++) {
+  //   for (let j = 0; j < genresGlobal.length; j++) {
+  //     if (genres[i] == genresGlobal[j]) {
+  //       document.getElementById("display-genres").textContent += genres[i];
+  //     }
+  //   }
+  // }
+
+  if (added == addedGlobal) {
+    document.getElementById("display-added").textContent = playlist;
+  }
+
+  for (let i = 0; i < artists.length; i++) {
+    for (let j = 0; j < artistsGlobal.length; j++) {
+      if (artists[i] == artistsGlobal[j].name) {
+        document.getElementById("display-artists").textContent += artists[i];
+      }
+    }
+  }
+  
+  if (album == albumGlobal) {
+    document.getElementById("display-album-title").textContent = album.name;
+    // document.getElementById("display-image"). = album.; //TODO: add album art
+  }
 }
 
 
@@ -164,6 +246,7 @@ function submit(num) {
   if (num != 0) {
     const input = document.getElementById("answer" + num);
     validate(input.value);
+    // giveClue(num);
   }
   else {
     // disable start button
@@ -174,10 +257,6 @@ function submit(num) {
   // set (num + 1) group's elements to be clickable
   document.getElementById("answer" + (num + 1)).style.pointerEvents = "auto";
   document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
-
-  // set (num - 1) group's elements to be NONclickable
-  document.getElementById("answer" + (num - 1)).style.pointerEvents = "none";
-  document.getElementById("submit" + (num - 1)).style.pointerEvents = "none";
 }
 
 function submitFinal() {
@@ -190,15 +269,17 @@ function submitFinal() {
   }
 }
 
-function handleDisplay() {
-  // look through all qualities of submitted song
-
-  // if they match actual song, update!!!
+function giveClue(num) {
+  //TODO: do a switch here i think
+  alert("clue");
 }
 
 function validate(guess) {
+  // check if anything matches and handle display!
+  // getSongFeatures(guess);
+
   // validate it girl
-  alert("submitting " + guess);
+  alert("submitting " + guess); //TODO: remove
   return songGlobal == guess;
 }
 
