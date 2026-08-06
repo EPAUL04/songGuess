@@ -272,7 +272,6 @@ function submitFinal() {
 
 function giveClue(num) {
   switch(num) {
-    //TODO: remember that most of these are objects that will probably need .name at min
     case 1:
       alert("playlist: " + playlistsGlobal);
       document.getElementById("display-playlist").textContent = playlistsGlobal;
@@ -320,6 +319,6 @@ function win() {
 
 function lose() {
   // tell winner they lost
-  alert("you lose, the song was " + songGlobal.name);
+  alert("the song was " + songGlobal.name);
   document.getElementById("reset").style.pointerEvents = "auto";
 }
