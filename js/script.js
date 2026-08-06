@@ -171,27 +171,33 @@ async function grabSong() {
   albumGlobal = features.album.name;
 }
 
-function getSongFeatures(song) {
+function getSongFeatures(songName) {
   //TODO: finish :)
-    const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${song.id}`, {
+  // turn songName into actual track object
+  const findSong = await fetch(`https://api.spotify.com/v1/searchq=track%3A${songName}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const id = await findSong.json().tracks.items[0].id;
+  const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const features = await songRequestFinal.json();
 
-  // get playlists the song is on
-  let playlist = "";
+  // get playlist the song is on
+  const check = await fetch(`https://api.spotify.com/v1/me/tracks/containsids=${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const inPlaylist = await check.json();
+  let playlist = inPlaylist[0];
 
   // get genres
   // let genres = "";
 
-  // get when added
-  let added = "";
-
   // get artist
-  let artist = "";
+  let artist = features.artists;
 
   // get album
-  let album = "";
+  let album = features.album.name;
 
 
   // now compare and update display ====================================================================
@@ -213,10 +219,6 @@ function getSongFeatures(song) {
   //     }
   //   }
   // }
-
-  if (added == addedGlobal) {
-    document.getElementById("display-added").textContent = playlist;
-  }
 
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
