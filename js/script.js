@@ -105,7 +105,7 @@ async function requestProfile() {
 //
 async function grabSong() {
   // first choose a playlist ============================================
-  // get access token
+  // get new access token
   let token = localStorage.getItem("access_token");
 
   // get playlist library using access token
@@ -119,54 +119,31 @@ async function grabSong() {
   const offset = Math.floor(rand / 20);
   const index = rand % 20;
 
-  // now get actual playlist from library
+  // now get actual playlist from library with offset included
   const playlist = await fetch(`https://api.spotify.com/v1/me/playlists?offset=${offset * 20}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-
   const page = await playlist.json();
   const selected = page.items[index];
-  alert("selected playlist: " + selected.name);
-  
-  // get playlist data using access token
-  const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id; // + "/items";
-  // getToken();
-  // const result3 = await fetch(playlistAddress, {
-  //   method: "GET", headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
-  // });  
-  // let playlist = await result3.json();
-  // alert("got playlist " + playlist.name);
 
-  // now get a song from it
-  alert("playlist has " + selected.items.total + " songs");
+  // address for specific playlist 
+  const playlistAddress = "https://api.spotify.com/v1/playlists/" + selected.id;
+  
+  // now get a song from playlist ==========================================
+  // get random number within range(0, number of songs)
   const rand2 = Math.floor(Math.random() * selected.items.total);
-  alert("selected song: " + rand2);
   const offsetSong = Math.floor(rand2 / 20);
   const indexSong = rand2 % 20;
 
+  // send request with offset
   const songRequest = await fetch(`${playlistAddress}?offset=${offsetSong * 20}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-  
   const songPage = await songRequest.json();
-  console.log(songPage);
+  // get the song from within their weird API stuff
   const selectedSong = songPage.items.items[indexSong].item;
-
-  // alert("song is " + selectedSong.name);
-  // songGlobal = selectedSong;
-//   const tracksResponse = await fetch(
-//     `https://api.spotify.com/v1/playlists/${selected.id}/tracks?offset=${offsetSong * 20}&limit=20`, {
-//       headers: { Authorization: `Bearer ${token}` }
-//     });
-
-// const tracks = await tracksResponse.json();
-
-// const selectedSong = tracks.items[indexSong].track;
-
-alert("Song: " + selectedSong.name);
-
-songGlobal = selectedSong;
-  alert("done!!!! :)");
+  // set global var so we can do validation yayyyy
+  songGlobal = selectedSong;
 }
 
 
