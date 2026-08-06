@@ -228,6 +228,7 @@ async function getAlbumCover(album) {
 // picks song, gets data ready, calls submit(0)
 async function start() {
   //pick song
+  getAlbumCover(); //TODO: remove
   await grabSong();
 
   // start gameplay!
