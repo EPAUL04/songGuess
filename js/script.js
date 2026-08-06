@@ -245,7 +245,9 @@ function submit(num) {
   // exclude num = 0 bc that's start button; validate
   if (num != 0) {
     const input = document.getElementById("answer" + num);
-    validate(input.value);
+    if (validate(input.value)) {
+      win();
+    }
     // giveClue(num);
   }
   else {
