@@ -151,7 +151,7 @@ async function grabSong() {
   const selectedSong = songPage.items.items[indexSong].item;
   // set global var so we can do validation yayyyy
   songGlobal = selectedSong;
-  alert("song is " + songGlobal);
+  alert("song is " + songGlobal.name);
 
   // update other globals!
   const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${songGlobal.id}`, {
@@ -259,7 +259,9 @@ function submit(num) {
   
   // set (num + 1) group's elements to be clickable
   document.getElementById("answer" + (num + 1)).style.pointerEvents = "auto";
+  document.getElementById("answer" + (num + 1)).style.backgroundColor = "whitesmoke";
   document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
+  document.getElementById("submit" + (num + 1)).style.backgroundColor = "whitesmoke";
 }
 
 function submitFinal() {
