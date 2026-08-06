@@ -152,7 +152,7 @@ async function grabSong() {
   // set global var so we can do validation yayyyy
   songGlobal = selectedSong;
 
-  // update other globals!  //TODO: this!!!!!!!!!!!!!!!!!!!
+  // update other globals!
   const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${songGlobal.id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -160,14 +160,8 @@ async function grabSong() {
 
   // playlists is going to be hard, it's going to have to be either only the playlist it was pulled from or like. a crazy loop
   playlistsGlobal = selected.name; //currently playlist pulled from
-
-  // // genresGlobal
-  // // features.
-  // they can't do genres, maybe instead do when it was added to library?
   addedGlobal = selectedSong.added_at;
-
   artistsGlobal = features.artists;
-
   albumGlobal = features.album.name;
 }
 
@@ -254,7 +248,7 @@ function submit(num) {
     if (validate(input.value)) {
       win();
     }
-    // giveClue(num);
+    giveClue(num);
   }
   else {
     // disable start button
@@ -279,7 +273,7 @@ function submitFinal() {
 
 function giveClue(num) {
   //TODO: do a switch here i think
-  alert("clue");
+  alert("clue for num " + num);
 }
 
 function validate(guess) {
