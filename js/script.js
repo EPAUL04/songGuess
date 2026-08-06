@@ -307,7 +307,6 @@ function validate(guess) {
   getSongFeatures(guess);
 
   // validate it girl
-  //TODO: make this a query thing instead of just comparison
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
   const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${songName}`, {
