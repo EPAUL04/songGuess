@@ -143,12 +143,12 @@ async function grabSong() {
   const indexSong = rand2 % 20;
 
   // send request with offset
-  const songRequest = await fetch(`${playlistAddress}?offset=${offsetSong * 20}&limit=20`, {
+  const songRequest = await fetch(`https://api.spotify.com/v1/playlists/${selected.id}/tracks?offset=${offsetSong}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const songPage = await songRequest.json();
   // get the song from within their weird API stuff
-  const selectedSong = songPage.items.items[indexSong].item;
+  const selectedSong = songPage.items[indexSong].track;
   // set global var so we can do validation yayyyy
   songGlobal = selectedSong;
   alert("song is " + songGlobal.name);
@@ -161,7 +161,7 @@ async function grabSong() {
 
   // playlists is going to be hard, it's going to have to be either only the playlist it was pulled from or like. a crazy loop
   playlistsGlobal = selected.name; //currently playlist pulled from
-  addedGlobal = selectedSong.added_at;
+  addedGlobal = songPage.items[indexSong].added_at;
   artistsGlobal = features.artists;
   albumGlobal = features.album;
 }
