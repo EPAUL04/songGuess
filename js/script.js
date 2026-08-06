@@ -273,6 +273,25 @@ function submitFinal() {
 function giveClue(num) {
   //TODO: do a switch here i think
   alert("clue for num " + num);
+
+  switch(num) {
+    case 1:
+      alert("playlist: " + playlistsGlobal);
+      document.getElementById("display-playlist").textContent = playlistsGlobal;
+      break;
+    case 2:
+      alert("added: " + addedGlobal);
+      break;
+    case 3:
+      alert("artists: " + artistsGlobal);
+      break;
+    case 4:
+      alert("album: " + albumGlobal);
+      break;
+    case 6:
+      alert("first letter: " + songGlobal.name[0]);
+      break;
+  }
 }
 
 function validate(guess) {
