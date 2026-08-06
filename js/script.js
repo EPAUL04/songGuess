@@ -312,7 +312,8 @@ async function validate(guess) {
   const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${songName}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-  alert("submitting " + findSong.json().items[0].name);
+  const found = await findSong.json();
+  alert("submitting " + found.items[0].name);
   return songGlobal.name == findSong.json().items[0].name;
 }
 
