@@ -147,6 +147,7 @@ async function grabSong() {
     headers: { Authorization: `Bearer ${token}` }
   });
   const songPage = await songRequest.json();
+  console.log(songPage);
   // get the song from within their weird API stuff
   const selectedSong = songPage.items[indexSong].track;
   // set global var so we can do validation yayyyy
@@ -314,7 +315,7 @@ async function validate(guess) {
   });
   const found = await findSong.json();
   alert("submitting " + found.items[0].name);
-  return songGlobal.name == findSong.json().items[0].name;
+  return songGlobal.name == findSong.items[0].name;
 }
 
 function win() {
