@@ -174,9 +174,12 @@ function submit(num) {
   }
   
   // set (num + 1) group's elements to be clickable
-  const divis = document.getElementById(num + 1);
   document.getElementById("answer" + (num + 1)).style.pointerEvents = "auto";
   document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
+
+  // set num group's elements to be NONclickable
+  document.getElementById("answer" + num).style.pointerEvents = "none";
+  document.getElementById("submit" + num).style.pointerEvents = "none";
 }
 
 function submitFinal() {
