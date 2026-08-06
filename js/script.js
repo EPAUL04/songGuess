@@ -173,6 +173,10 @@ async function grabSong() {
 
 function getSongFeatures(song) {
   //TODO: finish :)
+    const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${song.id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const features = await songRequestFinal.json();
 
   // get playlists the song is on
   let playlist = "";
@@ -282,7 +286,7 @@ function validate(guess) {
 
   // validate it girl
   alert("submitting " + guess); //TODO: remove
-  return songGlobal == guess;
+  return songGlobal.name == guess;
 }
 
 function win() {
