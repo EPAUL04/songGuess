@@ -273,7 +273,8 @@ function submitFinal() {
 function giveClue(num) {
   switch(num) {
     case 1:
-      alert("playlist: " + playlistsGlobal);
+      // alert("playlist: " + playlistsGlobal);
+      document.getElementById("display-playlist").style.transition = "2s ease" = playlistsGlobal;
       document.getElementById("display-playlist").textContent = playlistsGlobal;
       break;
     case 2:
