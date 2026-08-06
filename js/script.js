@@ -292,5 +292,5 @@ function win() {
 
 function lose() {
   // tell winner they lost
-  alert("you lose :/");
+  alert("you lose, the song was " + songGlobal.name);
 }
