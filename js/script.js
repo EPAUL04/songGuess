@@ -249,7 +249,9 @@ function submit(num) {
     if (validate(input.value)) {
       win();
     }
-    giveClue(num);
+    else {
+      giveClue(num);
+    }
   }
   else {
     // disable start button

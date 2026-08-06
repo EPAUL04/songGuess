@@ -25,7 +25,7 @@ body {
 }
 
 header {
-    color: #52796F; 
+    color: white; 
     float: left;
     padding-top: 25px;
 }
@@ -174,13 +174,13 @@ form input {
     padding: 2% 5%;
 }
 
-#gamestate {
+#gamestate, #reset {
     width: 30%;
     float: right;
     margin: 3%;
     border-radius: 8px;
 }
-#gamestate button {
+#gamestate button, #reset button {
     width: 80%;
     margin: 0 10%;
     padding: 3% 0;
