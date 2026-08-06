@@ -263,7 +263,7 @@ function submit(num) {
 
 function submitFinal() {
   // validate and call either win or lose
-  if (validate(document.getElementById("answer7"))) {
+  if (validate(document.getElementById("answer7").value)) {
     win();
   }
   else {
