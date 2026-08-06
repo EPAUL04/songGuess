@@ -228,7 +228,6 @@ async function getAlbumCover(album) {
 // picks song, gets data ready, calls submit(0)
 async function start() {
   //pick song
-  getAlbumCover(); //TODO: remove
   await grabSong();
 
   // start gameplay!
@@ -298,7 +297,7 @@ function giveClue(num) {
 
 function validate(guess) {
   // check if anything matches and handle display!
-  // getSongFeatures(guess);
+  getSongFeatures(guess);
 
   // validate it girl
   alert("submitting " + guess); //TODO: remove
