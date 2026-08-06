@@ -282,11 +282,17 @@ function giveClue(num) {
       break;
     case 3:
       alert("artists: " + artistsGlobal);
-      document.getElementById("display-artists").textContent = artistsGlobal;
+      let text = "";
+      for (let i = 0; i < artistsGlobal.length - 1; i++) {
+        text += artistsGlobal[i] + ", ";
+      }
+      text += artistsGlobal[artistsGlobal.length];
+      document.getElementById("display-artists").textContent = text;
       break;
     case 4:
       alert("album: " + albumGlobal);
       document.getElementById("display-album").textContent = albumGlobal;
+      getAlbumCover();
       break;
     case 6:
       alert("first letter: " + songGlobal.name[0]);
