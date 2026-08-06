@@ -316,10 +316,12 @@ function win() {
   alert("you win!!!");
   document.getElementById("reset").style.pointerEvents = "auto";
   document.getElementById("reset").style.backgroundColor = "whitesmoke";
+  document.getElementById("display-title").textContent = songGlobal.name;
 }
 
 function lose() {
   // tell winner they lost
   alert("the song was " + songGlobal.name);
   document.getElementById("reset").style.pointerEvents = "auto";
+  document.getElementById("display-title").textContent = songGlobal.name;
 }
