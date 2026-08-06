@@ -171,7 +171,7 @@ async function grabSong() {
   albumGlobal = features.album.name;
 }
 
-function getSongFeatures(songName) {
+async function getSongFeatures(songName) {
   //TODO: finish :)
   // turn songName into actual track object
   const findSong = await fetch(`https://api.spotify.com/v1/searchq=track%3A${songName}`, {
