@@ -272,6 +272,7 @@ function submitFinal() {
   else {
     lose();
   }
+  document.getElementById("start-over").style.pointerEvents = "auto";
 }
 
 function giveClue(num) {

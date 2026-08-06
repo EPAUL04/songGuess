@@ -35,19 +35,19 @@
             </p> -->
             <form>
                 <div id="1">
-                    <label for="guess1">First guess: <b>+your playlists containing this song</b></label>
+                    <label for="guess1">First guess: <b>+your playlist containing this song</b></label>
                     <input type="text" id="answer1" name="answer1">
                     <label onclick="submit(1)" class="submit" id="submit1">submit</label>
                 </div>
 
                 <div id="2">
-                    <label for="guess2">Second guess: <b>+genres</b></label>
+                    <label for="guess2">Second guess: <b>+when you first discovered this song</b></label>
                     <input type="text" id="answer2" name="answer2">
                     <label onclick="submit(2)" class="submit" id="submit2">submit</label>
                 </div>
                 
                 <div id="3">
-                    <label for="guess3">Third guess: <b>+artist name</b></label>
+                    <label for="guess3">Third guess: <b>+artist name(s)</b></label>
                     <input type="text" id="answer3" name="answer3">
                     <label onclick="submit(3)" class="submit" id="submit3">submit</label>
                 </div>
@@ -65,7 +65,7 @@
                 </div>
                 
                 <div id="6">
-                    <label for="guess6">Sixth guess: <b>+first letter</b></label>
+                    <label for="guess6">Sixth guess: <b>+first letter of song title</b></label>
                     <input type="text" id="answer6" name="answer6">
                     <label onclick="submit(6)" class="submit" id="submit6">submit</label>
                 </div>
@@ -88,6 +88,10 @@
 
             <div id="gamestate">
                 <button onclick="start()" id="start">Select a song!</button>
+            </div>
+
+            <div style="pointer-events: none; color: gray;">
+                <a href="index.html"><button id="start">Play again</button></a>
             </div>
         </main>
         <footer>
