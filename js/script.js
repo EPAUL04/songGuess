@@ -302,7 +302,7 @@ function giveClue(num) {
   }
 }
 
-function validate(guess) {
+async function validate(guess) {
   // check if anything matches and handle display!
   getSongFeatures(guess);
 
