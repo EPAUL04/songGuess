@@ -160,9 +160,7 @@ async function start() {
 }
 
 function submit(num) {
-  // alert("answer" + num);
-
-  // validate input
+  // exclude num = 0 bc that's start button; validate
   if (num != 0) {
     const input = document.getElementById("answer" + num);
     validate(input.value);
@@ -177,13 +175,25 @@ function submit(num) {
   document.getElementById("answer" + (num + 1)).style.pointerEvents = "auto";
   document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
 
-  // set num group's elements to be NONclickable
-  document.getElementById("answer" + num).style.pointerEvents = "none";
-  document.getElementById("submit" + num).style.pointerEvents = "none";
+  // set (num - 1) group's elements to be NONclickable
+  document.getElementById("answer" + (num - 1)).style.pointerEvents = "none";
+  document.getElementById("submit" + (num - 1)).style.pointerEvents = "none";
 }
 
 function submitFinal() {
   // validate and call either win or lose
+  if (validate(document.getElementById("answer7"))) {
+    win();
+  }
+  else {
+    lose();
+  }
+}
+
+function handleDisplay() {
+  // look through all qualities of submitted song
+
+  // if they match actual song, update!!!
 }
 
 function validate(guess) {
@@ -194,8 +204,10 @@ function validate(guess) {
 
 function win() {
   // tell user they won, do something fun
+  alert("you win!!!");
 }
 
 function lose() {
   // tell winner they lost
+  alert("you lose :/");
 }
