@@ -151,6 +151,7 @@ async function grabSong() {
   const selectedSong = songPage.items.items[indexSong].item;
   // set global var so we can do validation yayyyy
   songGlobal = selectedSong;
+  alert("song is " + songGlobal);
 
   // update other globals!
   const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${songGlobal.id}`, {
