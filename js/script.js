@@ -160,7 +160,7 @@ async function start() {
 }
 
 function submit(num) {
-  alert("answer" + num);
+  // alert("answer" + num);
 
   // validate input
   if (num != 0) {
@@ -186,6 +186,7 @@ function submitFinal() {
 function validate(guess) {
   // validate it girl
   alert("submitting " + guess);
+  return songGlobal == guess;
 }
 
 function win() {
