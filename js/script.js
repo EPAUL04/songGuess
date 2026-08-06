@@ -172,7 +172,7 @@ async function getSongFeatures(songName) {
   const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${songName}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-  const id = await findSong.json().tracks.items[0].id;
+  const id = await findSong.json().items[0].id;
   const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -206,7 +206,7 @@ async function getSongFeatures(songName) {
   }
   
   if (album == albumGlobal.name) {
-    document.getElementById("display-album-title").textContent = album.name;
+    document.getElementById("display-album").textContent = album.name;
     getAlbumCover(albumGlobal);
   }
 }
@@ -292,7 +292,7 @@ function giveClue(num) {
       break;
     case 4:
       alert("album: " + albumGlobal);
-      document.getElementById("display-album").textContent = albumGlobal;
+      document.getElementById("display-album").textContent = albumGlobal.name;
       getAlbumCover();
       break;
     case 6:
