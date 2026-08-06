@@ -19,14 +19,31 @@
             </nav>
         </div>
         
-        <main>
-            <br>
-            
-            <p>
-                Welcome! This game selects a song from your spotify library, then gives you seven attempts to guess 
-                which song has been selected. Clues are given as follows:
+        <main style="background-color: #9eb5af; width: 80%; margin: auto; margin-top: 3em; margin-bottom: 3em; border-radius: 5px; padding: 2em">
+            <h3>Welcome!</h3>
+            <p style="text-indent: 0;">
+                This is a web game designed to pull a playlist from your spotify library, then get a random song 
+                from it. You will be given a series of clues to guess which song has been selected.
             </p>
-            <ol style="margin-left: 5%;">
+            <br>
+            <h3>How to play:</h3>
+            <p style="text-indent: 0;">
+                First, hit the login button at the bottom of the page. This will open a login page to connect to your Spotify 
+                account. Once you log in, you will be redirected to the main webpage. Once on this page, make sure not to 
+                refresh the browser or your data may be lost and you will have to log back in. 
+            </p>
+            <br>
+            <p style="text-indent: 0;">
+                Once you're on the game page, hit the start button to select a song. At this point, the first input box on the 
+                left side of the screen will become available and you may begin guessing. Clues will be shown on the right side 
+                of the screen. They will appear when the corresponding guess becomes available, <b>or</b> whenever a song that you guessed 
+                shares traits with the selected song.
+            </p>
+            <br>
+            <p style="margin-left: 10%;">
+                Clues are given as follows:
+            </p>
+            <ol style="margin-left: 15%; float: left;">
                 <li><b>a</b> playlist you've added the song to</li>
                 <li>when the song was first added to your library</li>
                 <li>the artist(s)</li>
@@ -35,13 +52,32 @@
                 <li>the first letter of the song's title</li>
                 <li>no extra clues!</li>
             </ol>
-            <p>
-                To play, log in to your Spotify account below! Once the connection is made, you will be redirected to a new page 
-                and will see your username on the top right. Press the start button to select a song. This will open the first 
-                input box, where you can start guessing!
+            <br>
+            <button id="login" onclick="login()" style="margin-left: 5%; padding: 1em 2em; font-size: large; float: right; margin-right: 20%;"><b>Log in!</b></button>
+            <br style="clear: both;">
+            <br>
+            <br>
+            <h3>More detail on how this website interacts with your data:</h3>
+            <p style="text-indent: 0;">
+                This website interacts with the Spotify API. First, it follows the steps listed in 
+                <a href="https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow" style="color: #3c5a52;">this guide</a> 
+                to direct the user through the authentication process and the process to fetch information from the user's profile. Next, 
+                it sends a series of requests through the API to acquire your library of playlists (to pick a playlist to pull a song from), to 
+                access the specified playlist, to access a random song from that playlist, and to access the actual listing of the song 
+                (to get features about the song such as album and artist information).
             </p>
             <br>
-            <button id="login" onclick="login()" style="margin-left: 5%;">Log in</button>
+            <h3>What are the security concerns?</h3>
+            <p style="text-indent: 0;">
+                Your data is accessed through Spotify's API, which follows its own security procedures. 
+                Your username and library information are never stored in the cache, local browser storage, or the script 
+                associated with this website. The only information stored in local storage is the song name and website 
+                information (client code and redirect URL). This means that the website itself may be slightly insecure, but 
+                your data itself is secured by Spotify's API security. 
+            </p>
+            <br>
+            <h3>You can find more information on Spotify's data policies and protections 
+                <a href="https://developer.spotify.com/terms" style="color: #3c5a52;">here</a>.</h3>
         </main>
         <footer>
             <p>io ✩ date updated: 08.05.2026 ✩ contact me via <a href="mailto:eandepaul@gmail.com">email</a></p>

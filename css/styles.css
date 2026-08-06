@@ -18,14 +18,13 @@ body {
     top: 0;
     height: calc(var(--image_height) - 20px);
     width: 100%;
-    background-color: #689a8d;
+    background-color: #9eb5af;
     z-index: 0;
     box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.45);
     margin-bottom: 0;
 }
 
 header {
-    color: white; 
     float: left;
     padding-top: 25px;
 }
@@ -116,8 +115,8 @@ footer a:hover {
 form {
     width: 50%;
     float: left;
-    margin: 5%;
-    background-color: #689a8d;
+    margin: 3em;
+    background-color: #9eb5af;
     border-radius: 8px;
     box-shadow: #3c5a52 5px 5px 10px;
 }
@@ -166,11 +165,12 @@ form input {
     width: 30%;
     float: right;
     margin: 3%;
-    background-color: #689a8d;
+    background-color: #9eb5af;
     border-radius: 8px;
     box-shadow: #3c5a52 5px 5px 10px;
 }
 #display p, #display img, #display h3, #display h2 {
+    text-indent: 0;
     padding: 2% 5%;
 }
 
@@ -178,9 +178,10 @@ form input {
     width: 30%;
     float: right;
     margin: 3%;
+    margin-top: 0;
     border-radius: 8px;
 }
-#gamestate button, #reset button {
+#gamestate button, #reset a button {
     width: 80%;
     margin: 0 10%;
     padding: 3% 0;
