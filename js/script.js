@@ -167,7 +167,6 @@ async function grabSong() {
 }
 
 async function getSongFeatures(songName) {
-  //TODO: finish :)
   // turn songName into actual track object
   const findSong = await fetch(`https://api.spotify.com/v1/searchq=track%3A${songName}`, {
     headers: { Authorization: `Bearer ${token}` }
@@ -185,9 +184,6 @@ async function getSongFeatures(songName) {
   const inPlaylist = await check.json();
   let playlist = inPlaylist[0];
 
-  // get genres
-  // let genres = "";
-
   // get artist
   let artist = features.artists;
 
@@ -196,24 +192,9 @@ async function getSongFeatures(songName) {
 
 
   // now compare and update display ====================================================================
-  // for (let i = 0; i < playlists.length; i++) {
-  //   for (let j = 0; j < playlistsGlobal.length; j++) {
-  //     if (playlists[i] == playlistsGlobal[j]) {
-  //       document.getElementById("display-playlists").textContent += playlists[i];
-  //     }
-  //   }
-  // }
   if (playlist == playlistsGlobal) {
     document.getElementById("display-playlist").textContent = playlist;
   }
-
-  // for (let i = 0; i < genres.length; i++) {
-  //   for (let j = 0; j < genresGlobal.length; j++) {
-  //     if (genres[i] == genresGlobal[j]) {
-  //       document.getElementById("display-genres").textContent += genres[i];
-  //     }
-  //   }
-  // }
 
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
@@ -225,8 +206,19 @@ async function getSongFeatures(songName) {
   
   if (album == albumGlobal) {
     document.getElementById("display-album-title").textContent = album.name;
-    // document.getElementById("display-image"). = album.; //TODO: add album art
+    getAlbumCover(albumGlobal);
   }
+}
+
+async function getAlbumCover(album) {
+  // send request for album art
+  getToken();
+  const request = await fetch(`https://api.spotify.com/v1/me/tracks/containsids=${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const cover = await check.json();
+  // set the element to the new src url
+  document.getElementById("display-image").src = cover.images[0].url;
 }
 
 
