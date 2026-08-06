@@ -314,6 +314,7 @@ function win() {
   // tell user they won, do something fun
   alert("you win!!!");
   document.getElementById("reset").style.pointerEvents = "auto";
+  document.getElementById("reset").style.backgroundColor = "whitesmoke";
 }
 
 function lose() {
