@@ -146,6 +146,7 @@ async function grabSong() {
   const songRequest = await fetch(`https://api.spotify.com/v1/playlists/${selected.id}/tracks?offset=${offsetSong}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
+  console.log(songRequest);
   const songPage = await songRequest.json();
   console.log(songPage);
   // get the song from within their weird API stuff
