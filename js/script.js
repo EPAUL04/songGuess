@@ -213,7 +213,7 @@ async function getSongFeatures(songName) {
 async function getAlbumCover(album) {
   // send request for album art
   getToken();
-  const request = await fetch(`https://api.spotify.com/v1/me/tracks/containsids=${id}`, {
+  const request = await fetch(`https://api.spotify.com/v1/albums${albumGlobal.id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const cover = await check.json();
@@ -271,25 +271,27 @@ function submitFinal() {
 }
 
 function giveClue(num) {
-  //TODO: do a switch here i think
-  alert("clue for num " + num);
-
   switch(num) {
+    //TODO: remember that most of these are objects that will probably need .name at min
     case 1:
       alert("playlist: " + playlistsGlobal);
       document.getElementById("display-playlist").textContent = playlistsGlobal;
       break;
     case 2:
       alert("added: " + addedGlobal);
+      document.getElementById("display-added").textContent = addedGlobal;
       break;
     case 3:
       alert("artists: " + artistsGlobal);
+      document.getElementById("display-artists").textContent = artistsGlobal;
       break;
     case 4:
       alert("album: " + albumGlobal);
+      document.getElementById("display-album").textContent = albumGlobal.name;
       break;
     case 6:
       alert("first letter: " + songGlobal.name[0]);
+      document.getElementById("display-title").textContent = songGlobal.name[0];
       break;
   }
 }
