@@ -142,8 +142,12 @@ async function grabSong() {
   const offsetSong = Math.floor(rand2 / 20);
   const indexSong = rand2 % 20;
 
+  // get new token to test smth
+  getToken();
+  token = localStorage.getItem("access_token");
+
   // send request with offset
-  const songRequest = await fetch(`https://api.spotify.com/v1/playlists/${selected.id}/tracks?offset=${offsetSong}&limit=20`, {
+  const songRequest = await fetch(`https://api.spotify.com/v1/playlists/${selected.id}/items?offset=${offsetSong}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   console.log(songRequest);
