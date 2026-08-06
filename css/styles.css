@@ -18,7 +18,7 @@ body {
     top: 0;
     height: calc(var(--image_height) - 20px);
     width: 100%;
-    background-color: white;
+    background-color: #689a8d;
     z-index: 0;
     box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.45);
     margin-bottom: 0;
