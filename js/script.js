@@ -146,11 +146,11 @@ async function grabSong() {
   const songRequest = await fetch(`https://api.spotify.com/v1/playlists/${selected.id}/items?offset=${offsetSong}&limit=20`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-  console.log(songRequest);
+  console.log(songRequest); //TODO: remove
   const songPage = await songRequest.json();
-  console.log(songPage);
+  console.log(songPage); //TODO: remove
   // get the song from within their weird API stuff
-  const selectedSong = songPage.items[indexSong].track;
+  const selectedSong = songPage.items[indexSong].item;
   // set global var so we can do validation yayyyy
   songGlobal = selectedSong;
   alert("song is " + songGlobal.name);
