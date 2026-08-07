@@ -190,7 +190,7 @@ async function getSongFeatures(songName) {
   let playlist = inPlaylist[0];
 
   // get artist
-  let artist = features.artists;
+  let artists = features.artists;
 
   // get album
   let album = features.album.name;
@@ -319,7 +319,7 @@ async function validate(guess) {
   const found = await findSong.json();
   console.log(found);
   alert("submitting " + found.tracks.items[0].name);
-  return songGlobal.name == found.items[0].name;
+  return songGlobal.name == found.tracks.items[0].name;
 }
 
 function win() {
