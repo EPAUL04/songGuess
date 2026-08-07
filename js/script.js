@@ -171,7 +171,7 @@ async function grabSong() {
 async function getSongFeatures(songName) {
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
-  const findSong = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(songName)}&type=track&limit=1`, {
+  const findSong = await fetch(`https://api.spotify.com/v1/search?q=${songName}&type=track&limit=1`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const result = await findSong.json();
@@ -312,7 +312,7 @@ async function validate(guess) {
   // validate it girl
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
-  const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${guess}`, {
+  const findSong = await fetch(`https://api.spotify.com/v1/search?q=${guess}&type=track&limit=1`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const found = await findSong.json();
