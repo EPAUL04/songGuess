@@ -176,7 +176,7 @@ async function getSongFeatures(songName) {
   });
   const result = await findSong.json();
   console.log(result);
-  const id = result.items[0].id;
+  const id = result.tracks.items[0].id;
   const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -318,7 +318,7 @@ async function validate(guess) {
   });
   const found = await findSong.json();
   console.log(found);
-  alert("submitting " + found.items[0].name);
+  alert("submitting " + found.tracks.items[0].name);
   return songGlobal.name == found.items[0].name;
 }
 
