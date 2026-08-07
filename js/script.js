@@ -266,11 +266,13 @@ function submit(num) {
   document.getElementById("submit" + (num + 1)).style.pointerEvents = "auto";
   document.getElementById("submit" + (num + 1)).style.backgroundColor = "whitesmoke";
 
-  // set num group's elements to be non-clickable
-  document.getElementById("answer" + num).style.pointerEvents = "none";
-  document.getElementById("answer" + (num)).style.backgroundColor = "lightgray";
-  document.getElementById("submit" + (num)).style.pointerEvents = "none";
-  document.getElementById("submit" + (num)).style.backgroundColor = "lightgray";
+  if (num > 0) {
+    // set num group's elements to be non-clickable
+    document.getElementById("answer" + num).style.pointerEvents = "none";
+    document.getElementById("answer" + (num)).style.backgroundColor = "lightgray";
+    document.getElementById("submit" + (num)).style.pointerEvents = "none";
+    document.getElementById("submit" + (num)).style.backgroundColor = "lightgray";
+  }
 }
 
 function submitFinal() {
