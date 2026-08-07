@@ -204,7 +204,9 @@ async function getSongFeatures(songName) {
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
       if (artists[i].name == artistsGlobal[j].name) {
-        document.getElementById("display-artists").textContent += artists[i].name;
+        if (document.getElementById("display-artists").textContent != artists[i].name) {
+          document.getElementById("display-artists").textContent += artists[i].name;
+        }
       }
     }
   }
