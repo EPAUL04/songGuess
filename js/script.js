@@ -293,11 +293,11 @@ function giveClue(num) {
       document.getElementById("display-playlist").textContent = playlistsGlobal;
       break;
     case 2:
-      alert("added: " + addedGlobal);
+      // alert("added: " + addedGlobal);
       document.getElementById("display-added").textContent = addedGlobal;
       break;
     case 3:
-      alert("artists: " + artistsGlobal);
+      // alert("artists: " + artistsGlobal);
       let text = "";
       for (let i = 0; i < artistsGlobal.length - 1; i++) {
         text += artistsGlobal[i].name + ", ";
@@ -307,13 +307,13 @@ function giveClue(num) {
       document.getElementById("display-artists").textContent = text;
       break;
     case 4:
-      alert("album: " + albumGlobal);
+      // alert("album: " + albumGlobal);
       document.getElementById("display-album").textContent = albumGlobal.name;
       getAlbumCover();
       break;
     case 6:
-      alert("first letter: " + songGlobal.name[0]);
-      document.getElementById("display-title").textContent = songGlobal.name[0];
+      // alert("first letter: " + songGlobal.name[0]);
+      document.getElementById("display-title").textContent = songGlobal.name[0] + "...";
       break;
   }
 }
@@ -329,9 +329,9 @@ async function validate(guess) {
     headers: { Authorization: `Bearer ${token}` }
   });
   const found = await findSong.json();
-  console.log(found);
+  // console.log(found);
   alert("submitting " + found.tracks.items[0].name);
-  alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + songGlobal.name == found.tracks.items[0].name);
+  console.log("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + songGlobal.name == found.tracks.items[0].name);
   return songGlobal.name == found.tracks.items[0].name;
 }
 
