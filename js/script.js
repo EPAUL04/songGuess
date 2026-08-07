@@ -172,7 +172,7 @@ async function getSongFeatures(songName) {
   getToken();
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
-  const findSong = await fetch(`https://api.spotify.com/v1/search?q=${songName}&type=track&limit=1`, {
+  const findSong = await fetch(`https://api.spotify.com/v1/search?q=${songName}&type=track`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const result = await findSong.json();
@@ -207,6 +207,7 @@ async function getSongFeatures(songName) {
       if (artists[i].name == artistsGlobal[j].name) {
         if (!document.getElementById("display-artists").textContent.includes(artists[i].name)) {
           document.getElementById("display-artists").textContent += artists[i].name;
+          document.getElementById("display-artists").textContent.replace("(artist)", "");
         }
       }
     }
