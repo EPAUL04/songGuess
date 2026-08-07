@@ -311,7 +311,7 @@ async function validate(guess) {
   // validate it girl
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
-  const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${songName}`, {
+  const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${guess}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const found = await findSong.json();
