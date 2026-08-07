@@ -174,7 +174,8 @@ async function getSongFeatures(songName) {
   const findSong = await fetch(`https://api.spotify.com/v1/search?q=track%3A${songName}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
-  const id = await findSong.json().items[0].id;
+  const result = await findSong.json();
+  const id = result.items[0].id;
   const songRequestFinal = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
