@@ -243,7 +243,7 @@ function submit(num) {
   // exclude num = 0 bc that's start button; validate
   if (num != 0) {
     const input = document.getElementById("answer" + num);
-    if (validate(input.value)) {
+    if (validate(input.value) == true) {
       win();
     }
     else {
@@ -317,7 +317,7 @@ async function validate(guess) {
   });
   const found = await findSong.json();
   alert("submitting " + found.items[0].name);
-  return songGlobal.name == findSong.items[0].name;
+  return songGlobal.name == found.items[0].name;
 }
 
 function win() {
