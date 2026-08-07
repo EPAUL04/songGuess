@@ -322,14 +322,15 @@ async function validate(guess) {
 function win() {
   // tell user they won, do something fun
   alert("you win!!!");
-  document.getElementById("reset").style.pointerEvents = "auto";
-  document.getElementById("reset").style.backgroundColor = "whitesmoke";
+  document.getElementById("reset-button").style.pointerEvents = "auto";
+  document.getElementById("reset-button").style.backgroundColor = "whitesmoke";
   document.getElementById("display-title").textContent = songGlobal.name;
 }
 
 function lose() {
   // tell winner they lost
   alert("the song was " + songGlobal.name);
-  document.getElementById("reset").style.pointerEvents = "auto";
+  document.getElementById("reset-button").style.backgroundColor = "whitesmoke";
+  document.getElementById("reset-button").style.pointerEvents = "auto";
   document.getElementById("display-title").textContent = songGlobal.name;
 }
