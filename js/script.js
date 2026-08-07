@@ -297,7 +297,7 @@ function giveClue(num) {
       alert("artists: " + artistsGlobal);
       let text = "";
       for (let i = 0; i < artistsGlobal.length - 1; i++) {
-        text += artistsGlobal[i] + ", ";
+        text += artistsGlobal[i].name + ", ";
       }
       text += artistsGlobal[artistsGlobal.length - 1].name;
       document.getElementById("display-artists").textContent = text;
