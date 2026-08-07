@@ -204,7 +204,7 @@ async function getSongFeatures(songName) {
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
       if (artists[i].name == artistsGlobal[j].name) {
-        if (document.getElementById("display-artists").textContent != artists[i].name) {
+        if (!document.getElementById("display-artists").textContent.includes(artists[i].name)) {
           document.getElementById("display-artists").textContent += artists[i].name;
         }
       }
@@ -300,6 +300,7 @@ function giveClue(num) {
         text += artistsGlobal[i].name + ", ";
       }
       text += artistsGlobal[artistsGlobal.length - 1].name;
+      document.getElementById("display-artists").textContent = " ";
       document.getElementById("display-artists").textContent = text;
       break;
     case 4:
