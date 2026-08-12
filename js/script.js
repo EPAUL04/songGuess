@@ -69,7 +69,6 @@ async function login() {
 async function getToken() {
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
-  let code = urlParams.get('code');
   const payload = {
     method: 'POST',
     headers: {
@@ -184,6 +183,8 @@ async function getSongFeatures(songName) {
   const features = await songRequestFinal.json();
 
   // get playlist the song is on
+  getToken();
+  token = localStorage.getItem("access_token");
   const check = await fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
