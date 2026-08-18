@@ -185,7 +185,7 @@ async function getSongFeatures(songName) {
   // get playlist the song is on
   // getToken();
   token = localStorage.getItem("access_token");
-  const check = await fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${id}`, {
+  const check = await fetch(`https://api.spotify.com/v1/me/items/contains?ids=${id}`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   const inPlaylist = await check.json();
