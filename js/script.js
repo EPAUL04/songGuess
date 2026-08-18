@@ -168,7 +168,7 @@ async function grabSong() {
 }
 
 async function getSongFeatures(songName) {
-  getToken();
+  // getToken();
   let token = localStorage.getItem("access_token");
   // turn songName into actual track object
   const findSong = await fetch(`https://api.spotify.com/v1/search?q=${songName}&type=track`, {
@@ -183,7 +183,7 @@ async function getSongFeatures(songName) {
   const features = await songRequestFinal.json();
 
   // get playlist the song is on
-  getToken();
+  // getToken();
   token = localStorage.getItem("access_token");
   const check = await fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${id}`, {
     headers: { Authorization: `Bearer ${token}` }
@@ -222,7 +222,7 @@ async function getSongFeatures(songName) {
 
 async function getAlbumCover(album) {
   // send request for album art
-  getToken();
+  // getToken();
   const token = localStorage.getItem("access_token");
   const request = await fetch(`https://api.spotify.com/v1/albums/${albumGlobal.id}`, {
     headers: { Authorization: `Bearer ${token}` }
