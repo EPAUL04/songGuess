@@ -218,7 +218,7 @@ async function getSongFeatures(songName) {
   }
   
   if (album == albumGlobal.name) {
-    document.getElementById("display-album").textContent = album.name;
+    document.getElementById("display-album").textContent = albumGlobal.name;
     getAlbumCover(albumGlobal);
   }
 }
@@ -335,8 +335,8 @@ async function validate(guess) {
   });
   const found = await findSong.json();
   // console.log(found);
-  alert("submitting " + found.tracks.items[0].name);
-  console.log("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + songGlobal.name == found.tracks.items[0].name);
+  // alert("submitting " + found.tracks.items[0].name);
+  alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + songGlobal == found.tracks.items[0]);
   return songGlobal == found.tracks.items[0];
 }
 
