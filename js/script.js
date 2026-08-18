@@ -199,8 +199,8 @@ async function getSongFeatures(songName) {
 
 
   // now compare and update display ====================================================================
-  if (playlist == playlistsGlobal) {
-    document.getElementById("display-playlist").textContent = playlist;
+  if (playlist == true) {
+    document.getElementById("display-playlist").textContent = playlistsGlobal;
   }
 
   for (let i = 0; i < artists.length; i++) {
