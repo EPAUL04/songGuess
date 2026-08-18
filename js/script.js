@@ -254,6 +254,7 @@ function submit(num) {
     const input = document.getElementById("answer" + num);
     if (validate(input.value) == true) {
       win();
+      return;
     }
     else {
       giveClue(num);
