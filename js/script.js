@@ -206,6 +206,9 @@ async function getSongFeatures(songName) {
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
       if (artists[i].name == artistsGlobal[j].name) {
+        if (document.getElementById("display-artists").textContent.includes("(artist)")) {
+          document.getElementById("display-artists").textContent = "";
+        }
         if (!document.getElementById("display-artists").textContent.includes(artists[i].name)) {
           document.getElementById("display-artists").textContent += artists[i].name;
           document.getElementById("display-artists").textContent.replace("(artist)", "");
@@ -279,7 +282,7 @@ function submit(num) {
 
 function submitFinal() {
   // validate and call either win or lose
-  if (validate(document.getElementById("answer7").value)) {
+  if (validate(document.getElementById("answer7").value) == true) {
     win();
   }
   else {
@@ -309,7 +312,7 @@ function giveClue(num) {
       document.getElementById("display-artists").textContent = text;
       break;
     case 4:
-      // alert("album: " + albumGlobal);
+      alert("album: " + albumGlobal);
       document.getElementById("display-album").textContent = albumGlobal.name;
       getAlbumCover();
       break;
@@ -334,7 +337,7 @@ async function validate(guess) {
   // console.log(found);
   alert("submitting " + found.tracks.items[0].name);
   console.log("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + songGlobal.name == found.tracks.items[0].name);
-  return songGlobal.name == found.tracks.items[0].name;
+  return songGlobal == found.tracks.items[0];
 }
 
 function win() {
