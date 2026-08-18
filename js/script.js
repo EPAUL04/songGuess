@@ -336,7 +336,8 @@ async function validate(guess) {
   const found = await findSong.json();
   // console.log(found);
   // alert("submitting " + found.tracks.items[0].name);
-  alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + (songGlobal == found.tracks.items[0]));
+  let bool = (songGlobal == found.tracks.items[0]);
+  alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + bool);
   return songGlobal.name == found.tracks.items[0].name;
 }
 
