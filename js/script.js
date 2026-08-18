@@ -184,12 +184,12 @@ async function getSongFeatures(songName) {
 
   // get playlist the song is on
   // getToken();
-  token = localStorage.getItem("access_token");
-  const check = await fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${id}`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  const inPlaylist = await check.json();
-  let playlist = inPlaylist[0];
+  // token = localStorage.getItem("access_token");
+  // const check = await fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${id}`, {
+  //   headers: { Authorization: `Bearer ${token}` }
+  // });
+  // const inPlaylist = await check.json();
+  // let playlist = inPlaylist[0];
 
   // get artist
   let artists = features.artists;
@@ -199,9 +199,9 @@ async function getSongFeatures(songName) {
 
 
   // now compare and update display ====================================================================
-  if (playlist == true) {
-    document.getElementById("display-playlist").textContent = playlistsGlobal;
-  }
+  // if (playlist == playlistsGlobal) {
+  //   document.getElementById("display-playlist").textContent = playlistsGlobal;
+  // }
 
   for (let i = 0; i < artists.length; i++) {
     for (let j = 0; j < artistsGlobal.length; j++) {
