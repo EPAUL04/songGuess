@@ -293,6 +293,8 @@ function submitFinal() {
   else {
     lose();
   }
+  document.getElementById("answer" + num).style.pointerEvents = "none";
+  document.getElementById("answer" + (num)).style.backgroundColor = "lightgray";
 }
 
 function giveClue(num) {
