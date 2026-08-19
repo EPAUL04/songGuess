@@ -254,7 +254,9 @@ function submit(num) {
   // exclude num = 0 bc that's start button; validate
   if (num != 0) {
     const input = document.getElementById("answer" + num);
-    if (validate(input.value) == true) {
+    const b = validate(input.value);
+    alert(b);
+    if (b == true) {
       alert("calling win");
       win();
       return;
