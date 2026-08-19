@@ -112,7 +112,7 @@ async function requestProfile() {
 async function grabSong() {
   // first choose a playlist ============================================
   // get new access token
-  getToken();
+  // getToken();
   let token = localStorage.getItem("access_token");
 
   // get playlist library using access token
