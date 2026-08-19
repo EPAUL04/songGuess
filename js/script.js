@@ -253,7 +253,7 @@ function submit(num) {
   // exclude num = 0 bc that's start button; validate
   if (num != 0) {
     const input = document.getElementById("answer" + num);
-    if (validate(input.value)) {
+    if (validate(input.value) == true) {
       alert("calling win");
       win();
       return;
@@ -285,7 +285,7 @@ function submit(num) {
 
 function submitFinal() {
   // validate and call either win or lose
-  if (validate(document.getElementById("answer7").value)) {
+  if (validate(document.getElementById("answer7").value) == true) {
     win();
   }
   else {
