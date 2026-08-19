@@ -69,7 +69,6 @@ async function getToken() {
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
   let code = urlParams.get('code');
-  alert(code);
   const payload = {
     method: 'POST',
     headers: {
@@ -344,7 +343,7 @@ async function validate(guess) {
   // alert("submitting " + found.tracks.items[0].name);
   let bool = (songGlobal.name == found.tracks.items[0].name);
   alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + bool);
-  return songGlobal.name == found.tracks.items[0].name;
+  return bool;
 }
 
 function win() {
