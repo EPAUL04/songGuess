@@ -3,7 +3,6 @@ const clientId = '4f101e56287d4095af259be90a77b1b9';
 // const redirectUriFail = 'https://epaul04.github.io/songGuess/login-failure.html';
 const redirectUri = 'https://epaul04.github.io/songGuess/login-success.html';
 const urlParams = new URLSearchParams(window.location.search);
-let code = urlParams.get('code');
 
 // song data
 let songGlobal = null;
@@ -69,6 +68,7 @@ async function login() {
 async function getToken() {
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
+  let code = urlParams.get('code');
   const payload = {
     method: 'POST',
     headers: {
