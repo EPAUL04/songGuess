@@ -69,6 +69,7 @@ async function getToken() {
   const codeVerifier = localStorage.getItem('code_verifier');
   const url = "https://accounts.spotify.com/api/token";
   let code = urlParams.get('code');
+  alert(code);
   const payload = {
     method: 'POST',
     headers: {
