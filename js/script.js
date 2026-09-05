@@ -260,6 +260,9 @@ async function submit(num) {
     const b = await validate(input.value);
     alert("b is " + b.value);
     if (b == true) {
+      // just to make sure these appear
+      giveClue(1);
+      giveClue(2);
       win();
       return;
     }
