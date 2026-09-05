@@ -169,6 +169,7 @@ form input {
 #reset-button:hover {
     box-shadow: none;
     text-decoration: none;
+    border-style: none;
 }
 
 #display {

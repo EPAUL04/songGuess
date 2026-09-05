@@ -297,7 +297,7 @@ function submitFinal() {
   const input = document.getElementById("answer7").value;
   let b = false;
   if (input != "" && input != null) {
-    b = await validate(input);
+    b = validate(input);
   }
   // gray out/make unusable the last box, removes little loophole i missed
   document.getElementById("answer" + (num)).style.backgroundColor = "lightgray";
