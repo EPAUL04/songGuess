@@ -256,7 +256,7 @@ async function submit(num) {
     let input = document.getElementById("answer" + num);
     // if submission was blank, just say false, otherwise validate submission
     let b = false;
-    if (input.value != null) {
+    if (input.value == "") {
       b = await validate(input.value);
     }
     alert("b is " + b.value);
