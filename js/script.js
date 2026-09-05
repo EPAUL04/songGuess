@@ -293,15 +293,23 @@ async function submit(num) {
 }
 
 function submitFinal() {
-  // validate and call either win or lose
-  if (validate(document.getElementById("answer7").value) == true) {
+  // validate
+  const input = document.getElementById("answer7").value;
+  let b = false;
+  if (input != "" && input != null) {
+    b = await validate(input);
+  }
+  // gray out/make unusable the last box, removes little loophole i missed
+  document.getElementById("answer" + (num)).style.backgroundColor = "lightgray";
+  document.getElementById("answer" + num).style.pointerEvents = "none";
+
+  // now call win or lose as needed
+  if (b == true) {
     win();
   }
   else {
     lose();
   }
-  document.getElementById("answer" + num).style.pointerEvents = "none";
-  document.getElementById("answer" + (num)).style.backgroundColor = "lightgray";
 }
 
 function giveClue(num) {
