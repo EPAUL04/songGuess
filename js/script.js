@@ -258,9 +258,8 @@ async function submit(num) {
       input = "blank";
     }
     const b = await validate(input.value);
-    alert("b is " + b);
+    alert("b is " + b.value);
     if (b == true) {
-      alert("calling win");
       win();
       return;
     }
