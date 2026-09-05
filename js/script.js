@@ -255,9 +255,11 @@ async function submit(num) {
     // getting input and replacing blank input with a placeholder
     let input = document.getElementById("answer" + num);
     if (input == null) {
-      input = "blank";
+      const b = false;
     }
-    const b = await validate(input.value);
+    else {
+      const b = await validate(input.value);
+    }
     alert("b is " + b.value);
     if (b == true) {
       // just to make sure these appear
