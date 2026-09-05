@@ -167,6 +167,7 @@ form input {
     text-decoration: none;
 }
 #reset-button:hover {
+    box-shadow: none;
     text-decoration: none;
 }
 
