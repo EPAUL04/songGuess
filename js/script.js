@@ -252,7 +252,11 @@ async function start() {
 async function submit(num) {
   // exclude num = 0 bc that's start button; validate
   if (num != 0) {
-    const input = document.getElementById("answer" + num);
+    // getting input and replacing blank input with a placeholder
+    let input = document.getElementById("answer" + num);
+    if (input == null) {
+      input = "blank";
+    }
     const b = await validate(input.value);
     alert("b is " + b.value);
     if (b == true) {
