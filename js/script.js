@@ -259,7 +259,6 @@ async function submit(num) {
     if (input != "" && input != null) {
       b = await validate(input);
     }
-    alert("b is " + b.value);
     if (b == true) {
       // just to make sure these appear
       giveClue(1);
@@ -356,25 +355,37 @@ async function validate(guess) {
     headers: { Authorization: `Bearer ${token}` }
   });
   const found = await findSong.json();
-  // console.log(found);
-  // alert("submitting " + found.tracks.items[0].name);
-  let bool = (songGlobal.name == found.tracks.items[0].name);
-  alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + bool);
-  return bool;
+  // check submission
+  return validationP2(found);
+}
+
+function validationP2(found) {
+  if (confirm("submitting track: " + found.tracks.items[0].name + " by " + found.tracks.items[0].artists[0].name) == true) {
+    let bool = (songGlobal.name == found.tracks.items[0].name);
+    // alert("comparing " + found.tracks.items[0].name + " and " + songGlobal.name + " and getting " + bool);
+    return bool;
+  }
+  else {
+    let newInput = prompt("Try again: ");
+    validate(newInput);
+  }
+
 }
 
 function win() {
   // tell user they won, do something fun
   alert("you win!!!");
-  document.getElementById("reset-button").style.pointerEvents = "auto";
-  document.getElementById("reset-button").style.backgroundColor = "whitesmoke";
-  document.getElementById("display-title").textContent = songGlobal.name;
+  resetButton();
 }
 
 function lose() {
   // tell winner they lost
   alert("the song was " + songGlobal.name);
-  document.getElementById("reset-button").style.backgroundColor = "whitesmoke";
+  resetButton();
+}
+
+function resetButton() {
   document.getElementById("reset-button").style.pointerEvents = "auto";
+  document.getElementById("reset-button").style.backgroundColor = "whitesmoke";
   document.getElementById("display-title").textContent = songGlobal.name;
 }
