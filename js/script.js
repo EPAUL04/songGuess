@@ -254,7 +254,7 @@ function submit(num) {
   if (num != 0) {
     const input = document.getElementById("answer" + num);
     const b = validate(input.value);
-    alert("b is " + b.value);
+    alert("b is " + b);
     if (b == true) {
       alert("calling win");
       win();
