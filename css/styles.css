@@ -161,6 +161,15 @@ form input {
     background-color: whitesmoke;
 }
 
+#reset-button {
+    background-color: gray; 
+    /* border-radius: 5px;  */
+    text-decoration: none;
+}
+#reset-button:hover {
+    text-decoration: none;
+}
+
 #display {
     width: 30%;
     float: right;
