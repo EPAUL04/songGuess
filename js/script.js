@@ -249,12 +249,12 @@ async function start() {
   submit(0);
 }
 
-function submit(num) {
+async function submit(num) {
   // exclude num = 0 bc that's start button; validate
   if (num != 0) {
     const input = document.getElementById("answer" + num);
-    const b = validate(input.value);
-    alert("b is " + b);
+    const b = await validate(input.value);
+    alert("b is " + b.value);
     if (b == true) {
       alert("calling win");
       win();
